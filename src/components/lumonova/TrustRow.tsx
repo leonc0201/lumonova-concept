@@ -1,24 +1,24 @@
-interface TrustStat {
-  value: string;
+interface TrustItem {
+  icon: string;
   label: string;
   subtext: string;
 }
 
-const STATS: TrustStat[] = [
+const ITEMS: TrustItem[] = [
   {
-    value: "70.000 h",
-    label: "Lebensdauer",
-    subtext: "L80-Norm",
+    icon: "verified",
+    label: "3 Jahre EU-Garantie",
+    subtext: "Auf alle LUMOnova Produkte",
   },
   {
-    value: "3 Jahre",
-    label: "EU-Garantie",
-    subtext: "Alle Produkte",
+    icon: "support_agent",
+    label: "Support aus Willich",
+    subtext: "Mo–Fr per E-Mail und Telefon",
   },
   {
-    value: "IP20",
-    label: "Schutzklasse",
-    subtext: "Panels & mehr",
+    icon: "task_alt",
+    label: "CE / WEEE / RoHS",
+    subtext: "Vollständig EU-zertifiziert",
   },
 ];
 
@@ -27,43 +27,52 @@ export function TrustRow() {
     <div className="bg-deepest w-full">
       <div className="mx-auto max-w-7xl">
         <div
-          className="grid grid-cols-1 md:grid-cols-3"
+          className="grid grid-cols-1 md:grid-cols-3 gap-px"
+          style={{ background: "rgba(255,255,255,0.06)" }}
           role="list"
         >
-          {STATS.map((stat, i) => (
+          {ITEMS.map((item) => (
             <div
-              key={stat.label}
+              key={item.label}
               role="listitem"
-              className="text-center md:text-left"
-              style={{
-                padding: "3rem 2rem",
-                borderLeft:
-                  i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none",
-              }}
+              className="bg-deepest flex items-start gap-4"
+              style={{ padding: "32px 24px" }}
             >
-              <p
-                className="font-bold text-amber"
+              <span
+                className="flex-shrink-0 inline-flex items-center justify-center rounded-full"
                 style={{
-                  fontSize: "clamp(48px, 6vw, 72px)",
-                  lineHeight: 1,
-                  letterSpacing: "-0.02em",
-                  marginBottom: "1rem",
+                  width: 40,
+                  height: 40,
+                  border: "1px solid rgba(232,160,96,0.18)",
+                  background: "rgba(232,160,96,0.04)",
                 }}
+                aria-hidden="true"
               >
-                {stat.value}
-              </p>
-              <p
-                className="text-[14px] font-bold fg-primary"
-                style={{ marginBottom: "0.25rem" }}
-              >
-                {stat.label}
-              </p>
-              <p
-                className="text-[13px]"
-                style={{ color: "rgba(242,242,242,0.55)" }}
-              >
-                {stat.subtext}
-              </p>
+                <span
+                  className="material-symbols-outlined text-amber"
+                  style={{ fontSize: 19 }}
+                >
+                  {item.icon}
+                </span>
+              </span>
+
+              <div className="min-w-0">
+                <p
+                  className="text-[14px] font-bold"
+                  style={{ color: "rgba(242,242,242,0.78)" }}
+                >
+                  {item.label}
+                </p>
+                <p
+                  className="text-[12px] mt-1"
+                  style={{
+                    color: "rgba(242,242,242,0.55)",
+                    lineHeight: 1.55,
+                  }}
+                >
+                  {item.subtext}
+                </p>
+              </div>
             </div>
           ))}
         </div>
