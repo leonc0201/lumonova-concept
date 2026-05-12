@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { PRODUCTS } from "./products";
 
 const otherLinks = [
-  { to: "/smart-home", label: "Smart Home" },
+  { to: "/ueber-uns", label: "Über Uns" },
   { to: "/support", label: "Support" },
 ];
 
