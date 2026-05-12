@@ -903,11 +903,7 @@ const Product = () => {
       )}
 
       {/* SEKTION 7 — TRUST */}
-      <section className="bg-base py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <TrustRow />
-        </div>
-      </section>
+      <TrustRow />
 
       <Footer />
     </div>

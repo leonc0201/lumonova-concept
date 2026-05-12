@@ -1,70 +1,73 @@
-interface TrustItem {
-  icon: string;
+interface TrustStat {
+  value: string;
   label: string;
   subtext: string;
 }
 
-const ITEMS: TrustItem[] = [
+const STATS: TrustStat[] = [
   {
-    icon: "verified",
-    label: "3 Jahre EU-Garantie",
-    subtext: "Auf alle LUMOnova Produkte",
+    value: "70.000 h",
+    label: "Lebensdauer",
+    subtext: "L80-Norm",
   },
   {
-    icon: "support_agent",
-    label: "Support aus Willich",
-    subtext: "Mo–Fr per E-Mail und Telefon",
+    value: "3 Jahre",
+    label: "EU-Garantie",
+    subtext: "Alle Produkte",
+  },
+  {
+    value: "IP20",
+    label: "Schutzklasse",
+    subtext: "Panels & mehr",
   },
 ];
 
 export function TrustRow() {
   return (
-    <div
-      className="grid grid-cols-1 md:grid-cols-2 gap-px mx-auto"
-      style={{ background: "rgba(255,255,255,0.04)", maxWidth: 800 }}
-      role="list"
-    >
-      {ITEMS.map((item) => (
+    <div className="bg-deepest w-full">
+      <div className="mx-auto max-w-7xl">
         <div
-          key={item.label}
-          role="listitem"
-          className="bg-mid flex items-start gap-4"
-          style={{ padding: "30px 24px" }}
+          className="grid grid-cols-1 md:grid-cols-3"
+          role="list"
         >
-          <span
-            className="flex-shrink-0 inline-flex items-center justify-center rounded-full"
-            style={{
-              width: 40,
-              height: 40,
-              border: "1px solid rgba(232,160,96,0.18)",
-              background: "rgba(232,160,96,0.04)",
-            }}
-            aria-hidden="true"
-          >
-            <span
-              className="material-symbols-outlined text-amber"
-              style={{ fontSize: 19 }}
+          {STATS.map((stat, i) => (
+            <div
+              key={stat.label}
+              role="listitem"
+              className="text-center md:text-left"
+              style={{
+                padding: "3rem 2rem",
+                borderLeft:
+                  i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none",
+              }}
             >
-              {item.icon}
-            </span>
-          </span>
-
-          <div className="min-w-0">
-            <p
-              className="text-[14px] font-bold"
-              style={{ color: "rgba(242,242,242,0.78)" }}
-            >
-              {item.label}
-            </p>
-            <p
-              className="text-[12px] mt-1"
-              style={{ color: "rgba(242,242,242,0.45)", lineHeight: 1.55 }}
-            >
-              {item.subtext}
-            </p>
-          </div>
+              <p
+                className="font-bold text-amber"
+                style={{
+                  fontSize: "clamp(48px, 6vw, 72px)",
+                  lineHeight: 1,
+                  letterSpacing: "-0.02em",
+                  marginBottom: "1rem",
+                }}
+              >
+                {stat.value}
+              </p>
+              <p
+                className="text-[14px] font-bold fg-primary"
+                style={{ marginBottom: "0.25rem" }}
+              >
+                {stat.label}
+              </p>
+              <p
+                className="text-[13px]"
+                style={{ color: "rgba(242,242,242,0.55)" }}
+              >
+                {stat.subtext}
+              </p>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }

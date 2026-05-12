@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import type { Tier } from "./products";
 
+export type GlowMode = "off" | "subtle" | "default";
+
 interface ProductCardProps {
   id: string;
   name: string;
@@ -9,7 +11,16 @@ interface ProductCardProps {
   price: number | null;
   description?: string;
   imageSrc?: string;
+  glow?: GlowMode;
 }
+
+const GLOW_CLASS: Record<GlowMode, string> = {
+  off: "hidden",
+  subtle:
+    "absolute rounded-full bg-amber/[0.08] group-hover:bg-amber/[0.15] transition-colors duration-[250ms]",
+  default:
+    "absolute rounded-full bg-amber/[0.18] group-hover:bg-amber/[0.32] transition-colors duration-[250ms]",
+};
 
 const TIER_PILL: Record<
   Tier,
@@ -45,9 +56,11 @@ export function ProductCard({
   tier,
   price,
   imageSrc,
+  glow = "default",
 }: ProductCardProps) {
   const pill = TIER_PILL[tier];
   const priceIsRequest = price === null;
+  const glowClass = GLOW_CLASS[glow];
 
   return (
     <Link
@@ -73,16 +86,18 @@ export function ProductCard({
           className="relative bg-mid flex items-center justify-center"
           style={{ height: 220 }}
         >
-          {/* Ambient Glow – verstärkt beim Hover */}
-          <div
-            className="absolute rounded-full bg-amber/[0.18] group-hover:bg-amber/[0.32] transition-colors duration-[250ms]"
-            aria-hidden="true"
-            style={{
-              width: 150,
-              height: 150,
-              filter: "blur(32px)",
-            }}
-          />
+          {/* Ambient Glow – Intensität ueber glow-Prop konfigurierbar */}
+          {glow !== "off" && (
+            <div
+              className={glowClass}
+              aria-hidden="true"
+              style={{
+                width: 150,
+                height: 150,
+                filter: "blur(32px)",
+              }}
+            />
+          )}
 
           {/* Tier-Pill */}
           <span

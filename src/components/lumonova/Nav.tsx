@@ -13,15 +13,17 @@ interface MegaCategory {
   desc: string;
   available: boolean;
   href?: string;
+  featured?: boolean;
 }
 
 const MEGA_CATEGORIES: MegaCategory[] = [
   {
     icon: "lightbulb",
     name: "Smart Bulbs",
-    desc: "E27, E14, GU10",
+    desc: "E27, E14, GU10 — RGB+CCT, Tunable White, Alexa & Google Home",
     available: true,
     href: "/collection?category=Smart+Bulbs",
+    featured: true,
   },
   {
     icon: "emoji_objects",
@@ -109,16 +111,25 @@ function MegaCategoryTile({
   cat: MegaCategory;
   onLinkClick: () => void;
 }) {
+  const isFeatured = !!cat.featured;
+
   const content = (
     <div
-      className="flex items-center gap-3.5"
-      style={{ padding: "0.75rem", borderRadius: "0.75rem" }}
+      className={
+        isFeatured
+          ? "flex flex-col gap-3 h-full"
+          : "flex items-center gap-3.5"
+      }
+      style={{
+        padding: isFeatured ? "1.25rem" : "0.75rem",
+        borderRadius: "0.75rem",
+      }}
     >
       <span
         className="flex items-center justify-center flex-shrink-0"
         style={{
-          width: 40,
-          height: 40,
+          width: isFeatured ? 48 : 40,
+          height: isFeatured ? 48 : 40,
           borderRadius: "50%",
           background: cat.available
             ? "rgba(232,160,96,0.08)"
@@ -134,7 +145,7 @@ function MegaCategoryTile({
         <span
           className="material-symbols-outlined"
           style={{
-            fontSize: 19,
+            fontSize: isFeatured ? 22 : 19,
             color: cat.available
               ? "var(--color-amber)"
               : "rgba(242,242,242,0.35)",
@@ -146,10 +157,11 @@ function MegaCategoryTile({
 
       <div className="min-w-0 flex-1">
         <p
-          className="text-[14px] font-bold flex items-center flex-wrap"
+          className="font-bold flex items-center flex-wrap"
           style={{
+            fontSize: isFeatured ? 16 : 14,
             color: "rgba(242,242,242,0.85)",
-            marginBottom: 2,
+            marginBottom: 4,
           }}
         >
           {cat.name}
@@ -170,8 +182,11 @@ function MegaCategoryTile({
           )}
         </p>
         <p
-          className="text-[12px]"
-          style={{ color: "rgba(242,242,242,0.35)" }}
+          style={{
+            fontSize: isFeatured ? 13 : 12,
+            color: "rgba(242,242,242,0.35)",
+            lineHeight: 1.5,
+          }}
         >
           {cat.desc}
         </p>
@@ -179,12 +194,14 @@ function MegaCategoryTile({
     </div>
   );
 
+  const featuredClass = isFeatured ? "sm:row-span-2" : "";
+
   if (cat.available && cat.href) {
     return (
       <Link
         to={cat.href}
         onClick={onLinkClick}
-        className="rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.04)]"
+        className={`rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.04)] ${featuredClass}`}
       >
         {content}
       </Link>
@@ -193,7 +210,7 @@ function MegaCategoryTile({
 
   return (
     <div
-      className="rounded-xl"
+      className={`rounded-xl ${featuredClass}`}
       style={{ cursor: "default", opacity: 0.4 }}
       aria-disabled="true"
     >

@@ -232,7 +232,7 @@ const Index = () => {
           >
             {PRODUCTS.slice(0, 4).map((p, i) => (
               <motion.div key={p.id} custom={i} variants={productCardVariant}>
-                <ProductCard {...p} />
+                <ProductCard {...p} glow="subtle" />
               </motion.div>
             ))}
           </motion.div>
@@ -274,14 +274,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* TRUST – jetzt bg-base, gleicher Ton wie Compatibility */}
-      <section className="bg-base py-16">
-        <div className="mx-auto max-w-7xl px-6">
-          <ScrollReveal direction="fade">
-            <TrustRow />
-          </ScrollReveal>
-        </div>
-      </section>
+      {/* TRUST – Full-width Banner mit grossen Zahlen, eigener bg-deepest */}
+      <ScrollReveal direction="fade">
+        <TrustRow />
+      </ScrollReveal>
 
       {/* Wechsel 3: bg-base → bg-deepest (Footer) */}
       <SectionBlob />
