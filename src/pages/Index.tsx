@@ -25,7 +25,7 @@ const productCardVariant = {
 };
 
 const usps = [
-  "Matter over Wi-Fi",
+  "Smart Lighting aus Europa",
   "Kein Hub erforderlich",
   "3 Jahre EU-Garantie",
 ];
@@ -123,32 +123,48 @@ const Index = () => {
         </div>
       </section>
 
-      {/* USP BAR – jetzt bg-base, integriert sich nahtlos mit Hero und Categories */}
-      <section className="bg-base py-6">
+      {/* USP BAR – schlichte Textzeile mit Trennstrichen */}
+      <section
+        className="bg-deepest"
+        style={{
+          padding: "14px 0",
+          borderTop: "1px solid rgba(255,255,255,0.04)",
+          borderBottom: "1px solid rgba(255,255,255,0.04)",
+        }}
+      >
         <div className="mx-auto max-w-7xl px-6">
-          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {usps.map((u) => (
+          <ul
+            className="flex items-center justify-center flex-wrap"
+            role="list"
+          >
+            {usps.map((u, i) => (
               <li
                 key={u}
-                className="rounded-xl text-center transition-colors duration-200"
-                style={{
-                  background: "rgba(232,160,96,0.06)",
-                  border: "1px solid rgba(232,160,96,0.12)",
-                  padding: "1.5rem 1rem",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "rgba(232,160,96,0.10)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "rgba(232,160,96,0.06)")
-                }
+                className="flex items-center"
+                role="listitem"
               >
-                <p
-                  className="text-[12px] uppercase fg-mid"
-                  style={{ letterSpacing: "var(--tracking-label)" }}
+                <span
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 500,
+                    color: "rgba(242,242,242,0.45)",
+                    letterSpacing: "0.05em",
+                    padding: "0 2rem",
+                  }}
                 >
                   {u}
-                </p>
+                </span>
+                {i < usps.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      width: 1,
+                      height: 14,
+                      background: "rgba(255,255,255,0.12)",
+                      flexShrink: 0,
+                    }}
+                  />
+                )}
               </li>
             ))}
           </ul>
