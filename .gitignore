@@ -26,5 +26,8 @@ dist-ssr
 # Original-Bildquellen (172 MB) — bleiben lokal, ausgeliefert werden die optimierten WebPs in /public/images-optimized/
 /public/images/
 
+# Optimierungs-Output aus Sub-Ordnern, die nur Begleitmaterial enthalten
+/public/images-optimized/products/Neuer Ordner/
+
 # Vercel
 .vercel

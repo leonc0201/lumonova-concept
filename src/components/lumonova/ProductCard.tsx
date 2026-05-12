@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Tier } from "./products";
 
 interface ProductCardProps {
@@ -5,7 +6,7 @@ interface ProductCardProps {
   name: string;
   sku: string;
   tier: Tier;
-  price: number;
+  price: number | null;
   description?: string;
   imageSrc?: string;
 }
@@ -32,7 +33,13 @@ const TIER_PILL: Record<
   },
 };
 
+function formatPrice(price: number | null): string {
+  if (price === null) return "Auf Anfrage";
+  return `€${price.toFixed(2).replace(".", ",")}`;
+}
+
 export function ProductCard({
+  id,
   name,
   sku,
   tier,
@@ -40,123 +47,139 @@ export function ProductCard({
   imageSrc,
 }: ProductCardProps) {
   const pill = TIER_PILL[tier];
+  const priceIsRequest = price === null;
 
   return (
-    <article
-      className="group flex flex-col rounded-xl overflow-hidden cursor-pointer transition-colors duration-200"
-      style={{
-        background: "rgba(255,255,255,0.02)",
-        border: "1px solid rgba(255,255,255,0.05)",
-      }}
-      onMouseEnter={(e) =>
-        (e.currentTarget.style.borderColor = "rgba(232,160,96,0.25)")
-      }
-      onMouseLeave={(e) =>
-        (e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)")
-      }
+    <Link
+      to={`/product/${id}`}
+      className="block"
+      aria-label={`${name} – Details ansehen`}
     >
-      {/* Bild-Bereich */}
-      <div
-        className="relative bg-mid flex items-center justify-center"
-        style={{ height: 220 }}
+      <article
+        className="group flex flex-col rounded-xl overflow-hidden cursor-pointer transition-colors duration-200 h-full"
+        style={{
+          background: "rgba(255,255,255,0.02)",
+          border: "1px solid rgba(255,255,255,0.05)",
+        }}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.borderColor = "rgba(232,160,96,0.25)")
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)")
+        }
       >
-        {/* Ambient Glow – verstärkt beim Hover */}
+        {/* Bild-Bereich */}
         <div
-          className="absolute rounded-full bg-amber/[0.18] group-hover:bg-amber/[0.32] transition-colors duration-[250ms]"
-          aria-hidden="true"
-          style={{
-            width: 150,
-            height: 150,
-            filter: "blur(32px)",
-          }}
-        />
-
-        {/* Tier-Pill */}
-        <span
-          className="absolute top-3 left-3 rounded-full font-bold uppercase"
-          style={{
-            fontSize: 8,
-            padding: "4px 10px",
-            background: "rgba(14,12,10,0.90)",
-            color: pill.color,
-            border: pill.border,
-            letterSpacing: "var(--tracking-btn)",
-            zIndex: 2,
-          }}
+          className="relative bg-mid flex items-center justify-center"
+          style={{ height: 220 }}
         >
-          {tier}
-        </span>
-
-        {imageSrc ? (
-          <img
-            src={imageSrc}
-            alt={name}
-            className="relative object-contain"
+          {/* Ambient Glow – verstärkt beim Hover */}
+          <div
+            className="absolute rounded-full bg-amber/[0.18] group-hover:bg-amber/[0.32] transition-colors duration-[250ms]"
+            aria-hidden="true"
             style={{
-              maxHeight: 160,
-              zIndex: 2,
-              filter: "drop-shadow(0 0 30px rgba(232,160,96,0.25))",
+              width: 150,
+              height: 150,
+              filter: "blur(32px)",
             }}
           />
-        ) : (
-          <span
-            className="relative material-symbols-outlined text-amber"
-            style={{
-              fontSize: 80,
-              zIndex: 2,
-              filter: "drop-shadow(0 0 30px rgba(232,160,96,0.35))",
-            }}
-            aria-hidden="true"
-          >
-            lightbulb
-          </span>
-        )}
-      </div>
 
-      {/* Info */}
-      <div className="p-5 flex flex-col gap-3">
-        <div>
-          <h3
-            className="text-[14px] font-bold"
-            style={{ color: "rgba(242,242,242,0.85)" }}
-          >
-            {name}
-          </h3>
-          <p
-            className="text-[10px] mt-1 uppercase"
-            style={{
-              color: "rgba(242,242,242,0.25)",
-              letterSpacing: "0.06em",
-            }}
-          >
-            {sku}
-          </p>
-        </div>
-        <div className="flex items-center justify-between gap-3">
-          <p className="fg-primary text-[17px] font-bold">
-            €{price.toFixed(2)}
-          </p>
+          {/* Tier-Pill */}
           <span
-            className="inline-flex items-center gap-1 rounded-full font-bold uppercase text-amber transition-colors"
+            className="absolute top-3 left-3 rounded-full font-bold uppercase"
             style={{
-              fontSize: 10,
-              padding: "5px 12px",
-              background: "rgba(232,160,96,0.08)",
-              border: "1px solid rgba(232,160,96,0.18)",
+              fontSize: 8,
+              padding: "4px 10px",
+              background: "rgba(14,12,10,0.90)",
+              color: pill.color,
+              border: pill.border,
               letterSpacing: "var(--tracking-btn)",
+              zIndex: 2,
             }}
           >
-            Ansehen
+            {tier}
+          </span>
+
+          {imageSrc ? (
+            <img
+              src={imageSrc}
+              alt={name}
+              className="relative object-contain"
+              style={{
+                maxHeight: 180,
+                zIndex: 2,
+                filter: "drop-shadow(0 0 30px rgba(232,160,96,0.25))",
+              }}
+              loading="lazy"
+            />
+          ) : (
             <span
-              className="material-symbols-outlined"
-              style={{ fontSize: 14 }}
+              className="relative material-symbols-outlined text-amber"
+              style={{
+                fontSize: 80,
+                zIndex: 2,
+                filter: "drop-shadow(0 0 30px rgba(232,160,96,0.35))",
+              }}
               aria-hidden="true"
             >
-              arrow_forward
+              lightbulb
             </span>
-          </span>
+          )}
         </div>
-      </div>
-    </article>
+
+        {/* Info */}
+        <div className="p-5 flex flex-col gap-3 flex-1">
+          <div>
+            <h3
+              className="text-[14px] font-bold"
+              style={{ color: "rgba(242,242,242,0.85)" }}
+            >
+              {name}
+            </h3>
+            <p
+              className="text-[10px] mt-1 uppercase"
+              style={{
+                color: "rgba(242,242,242,0.25)",
+                letterSpacing: "0.06em",
+              }}
+            >
+              {sku}
+            </p>
+          </div>
+          <div className="flex items-center justify-between gap-3 mt-auto">
+            <p
+              className="font-bold"
+              style={{
+                fontSize: priceIsRequest ? 13 : 17,
+                color: priceIsRequest
+                  ? "rgba(242,242,242,0.55)"
+                  : "#F2F2F2",
+              }}
+            >
+              {formatPrice(price)}
+            </p>
+            <span
+              className="inline-flex items-center gap-1 rounded-full font-bold uppercase text-amber transition-colors"
+              style={{
+                fontSize: 10,
+                padding: "5px 12px",
+                background: "rgba(232,160,96,0.08)",
+                border: "1px solid rgba(232,160,96,0.18)",
+                letterSpacing: "var(--tracking-btn)",
+              }}
+            >
+              Ansehen
+              <span
+                className="material-symbols-outlined"
+                style={{ fontSize: 14 }}
+                aria-hidden="true"
+              >
+                arrow_forward
+              </span>
+            </span>
+          </div>
+        </div>
+      </article>
+    </Link>
   );
 }

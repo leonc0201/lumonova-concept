@@ -139,11 +139,15 @@ const Collection = () => {
       return catMatch && tierMatch;
     });
 
+    // null-Preise ("Auf Anfrage") werden beim Preis-Sort immer ans Ende gestellt
+    const priceValue = (p: { price: number | null }) =>
+      p.price === null ? Number.POSITIVE_INFINITY : p.price;
+
     if (sort === "price-asc") {
-      return [...base].sort((a, b) => a.price - b.price);
+      return [...base].sort((a, b) => priceValue(a) - priceValue(b));
     }
     if (sort === "price-desc") {
-      return [...base].sort((a, b) => b.price - a.price);
+      return [...base].sort((a, b) => priceValue(b) - priceValue(a));
     }
     return base;
   }, [activeCategory, activeTier, sort]);

@@ -32,8 +32,9 @@ const MEGA_CATEGORIES: MegaCategory[] = [
   {
     icon: "grid_on",
     name: "Panels",
-    desc: "Wand & Decke",
-    available: false,
+    desc: "Büro & Decke",
+    available: true,
+    href: "/collection?category=Panels",
   },
   {
     icon: "light_mode",

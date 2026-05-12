@@ -22,9 +22,9 @@ const CATEGORIES: Category[] = [
   },
   {
     name: "Panels",
-    description: "Modulare Wandpanels für Akzentbeleuchtung",
+    description: "LED-Backlit-Panels für Büro und Decke",
     icon: "grid_view",
-    available: false,
+    available: true,
   },
   {
     name: "Ceiling Lights",

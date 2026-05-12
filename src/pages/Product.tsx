@@ -1,116 +1,17 @@
 import { useEffect, useState } from "react";
-import type { ReactNode } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import { Nav } from "@/components/lumonova/Nav";
 import { Footer } from "@/components/lumonova/Footer";
 import { AmberButton } from "@/components/lumonova/AmberButton";
 import { SectionHeading } from "@/components/lumonova/SectionHeading";
 import { TrustRow } from "@/components/lumonova/TrustRow";
-
-const HERO_USPS = [
-  "Wi-Fi 2.4 GHz — direkte Verbindung, kein Hub",
-  "Amazon Alexa & Google Home kompatibel",
-  "16 Mio. Farben + Tunable White 1800K–6500K",
-  "3 Jahre EU-Garantie · CE / WEEE / RoHS",
-];
-
-// Erstes Element = echtes Produktbild, restliche 7 = Konzept-Platzhalter
-const HERO_IMAGES: Array<string | null> = [
-  "/images-optimized/products/Lumonova_LM-A60SM_1.webp",
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-];
-
-interface FeatureBlock {
-  eyebrow: string;
-  title: string;
-  text: string;
-  imageOnLeft: boolean;
-  imageSrc?: string;
-  imageAlt?: string;
-}
-
-const FEATURES: FeatureBlock[] = [
-  {
-    eyebrow: "Farbe",
-    title: "16 Millionen Farben.",
-    text: "Vom satten Sonnenuntergang bis zum kühlen Tageslicht — der volle RGB-Farbraum, präzise gesteuert über App oder Sprache.",
-    imageOnLeft: true,
-    imageSrc: "/images-optimized/atmosphere/Farbvielfalt.webp",
-    imageAlt: "Wohnraum mit RGB-Farbakzenten in unterschiedlichen Stimmungen",
-  },
-  {
-    eyebrow: "Tunable White",
-    title: "1800 K – 6500 K.",
-    text: "Warmes Kerzenlicht am Abend, klares Arbeitslicht am Morgen. Die Farbtemperatur passt sich Deinem Tag an.",
-    imageOnLeft: false,
-    imageSrc: "/images-optimized/atmosphere/Romantik%20Dinner_edit.webp",
-    imageAlt: "Romantisch warm beleuchtetes Dinner-Setting",
-  },
-  {
-    eyebrow: "App & Sprachsteuerung",
-    title: "Per App. Per Stimme.",
-    text: "Steuere Dein Licht über die Tuya Smart App, Amazon Alexa oder Google Home — direkt per WLAN, ohne Hub oder Bridge.",
-    imageOnLeft: true,
-    imageSrc: "/images-optimized/atmosphere/Smart%20Control.webp",
-    imageAlt: "Smart-Home-Steuerung per App und Sprache",
-  },
-];
-
-interface SpecRow {
-  label: string;
-  value: string;
-  accent?: boolean;
-}
-
-const SPECS: SpecRow[] = [
-  { label: "Sockel", value: "E27" },
-  { label: "Leistung", value: "9 W (ersetzt 60 W)" },
-  { label: "Lichtstrom", value: "806 Lumen" },
-  { label: "Farbtemperatur", value: "1800 K – 6500 K" },
-  { label: "RGB", value: "16 Mio. Farben" },
-  { label: "Protokoll", value: "Wi-Fi 2.4 GHz (Tuya)" },
-  { label: "App", value: "Tuya Smart / Smart Life" },
-  { label: "Kompatibilität", value: "Amazon Alexa, Google Home" },
-  { label: "Lebensdauer", value: "25.000 h" },
-  { label: "Maße", value: "Ø 60 × 110 mm" },
-  { label: "Zertifikate", value: "CE, WEEE, RoHS" },
-  { label: "Garantie", value: "3 Jahre EU", accent: true },
-];
-
-interface CompatCard {
-  number: string;
-  name: string;
-  badgeSrc: string;
-  badgeAlt: string;
-}
-
-const COMPAT_AVAILABLE: CompatCard[] = [
-  {
-    number: "01",
-    name: "Google Home",
-    badgeSrc: "/images-optimized/logo/works%20with%20Google%20Home.webp",
-    badgeAlt: "Works with Google Home",
-  },
-  {
-    number: "02",
-    name: "Amazon Alexa",
-    badgeSrc: "/images-optimized/logo/works%20with%20Alexa.webp",
-    badgeAlt: "Works with Amazon Alexa",
-  },
-  {
-    number: "03",
-    name: "Tuya Smart App",
-    badgeSrc: "/images-optimized/logo/Tuya%20Logo.webp",
-    badgeAlt: "Tuya Smart",
-  },
-];
-
-const COMPAT_COMING = ["Apple Home", "SmartThings"];
+import {
+  getProductById,
+  type CompatCard,
+  type FeatureBlock,
+  type Product as ProductData,
+  type SpecRow,
+} from "@/components/lumonova/products";
 
 const TABS = [
   { id: "features", label: "Beschreibung" },
@@ -120,8 +21,18 @@ const TABS = [
 
 const SCROLL_OFFSET = 120;
 
-// Glow-Bühne mit allen Layern – wird im Hauptbild der Galerie wiederverwendet
-function GlowStage({ children }: { children: ReactNode }) {
+const COMING_SOON_DEFAULT = ["Apple Home", "SmartThings"];
+
+function formatPrice(price: number | null): string {
+  if (price === null) return "Auf Anfrage";
+  return `€${price.toFixed(2).replace(".", ",")}`;
+}
+
+// ───────────────────────────────────────────────────────────
+//  Glow-Bühne (alle Layer wie vorher)
+// ───────────────────────────────────────────────────────────
+
+function GlowStage({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div
@@ -219,19 +130,36 @@ function GlowStage({ children }: { children: ReactNode }) {
   );
 }
 
-function HeroGallery() {
+// ───────────────────────────────────────────────────────────
+//  Hero-Galerie
+// ───────────────────────────────────────────────────────────
+
+function HeroGallery({ product }: { product: ProductData }) {
+  // 1 echtes Bild + 7 Platzhalter (für Konzept-Phase)
+  const images: Array<string | null> = [
+    product.imageSrc ?? null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ];
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeSrc = HERO_IMAGES[activeIndex];
+  // Reset Galerie bei Produktwechsel
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [product.id]);
+
+  const activeSrc = images[activeIndex];
 
   const goPrev = () =>
-    setActiveIndex(
-      (i) => (i - 1 + HERO_IMAGES.length) % HERO_IMAGES.length
-    );
-  const goNext = () => setActiveIndex((i) => (i + 1) % HERO_IMAGES.length);
+    setActiveIndex((i) => (i - 1 + images.length) % images.length);
+  const goNext = () => setActiveIndex((i) => (i + 1) % images.length);
 
   return (
     <div>
-      {/* Hauptbild-Bereich */}
       <div
         className="relative overflow-hidden flex items-center justify-center"
         style={{
@@ -244,7 +172,7 @@ function HeroGallery() {
           {activeSrc ? (
             <img
               src={activeSrc}
-              alt="LUMOnova LM-A60SM RGB Smart Bulb"
+              alt={product.name}
               className="relative object-contain"
               style={{
                 height: "75%",
@@ -266,7 +194,6 @@ function HeroGallery() {
           )}
         </GlowStage>
 
-        {/* Pfeil links */}
         <button
           type="button"
           onClick={goPrev}
@@ -299,7 +226,6 @@ function HeroGallery() {
           </span>
         </button>
 
-        {/* Pfeil rechts */}
         <button
           type="button"
           onClick={goNext}
@@ -333,12 +259,11 @@ function HeroGallery() {
         </button>
       </div>
 
-      {/* Thumbnail-Leiste */}
       <div
         className="flex overflow-x-auto"
         style={{ gap: "0.5rem", marginTop: "0.75rem", paddingBottom: 4 }}
       >
-        {HERO_IMAGES.map((src, i) => {
+        {images.map((src, i) => {
           const isActive = i === activeIndex;
           return (
             <button
@@ -385,6 +310,10 @@ function HeroGallery() {
     </div>
   );
 }
+
+// ───────────────────────────────────────────────────────────
+//  SubNav (sticky)
+// ───────────────────────────────────────────────────────────
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
@@ -433,10 +362,7 @@ function SubNav() {
       aria-label="Produkt-Sub-Navigation"
     >
       <div className="mx-auto max-w-7xl px-6">
-        <ul
-          className="flex items-center"
-          style={{ height: 48, gap: "2rem" }}
-        >
+        <ul className="flex items-center" style={{ height: 48, gap: "2rem" }}>
           {TABS.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -469,6 +395,10 @@ function SubNav() {
     </nav>
   );
 }
+
+// ───────────────────────────────────────────────────────────
+//  Features
+// ───────────────────────────────────────────────────────────
 
 function FeatureImage({ src, alt }: { src?: string; alt?: string }) {
   return (
@@ -567,10 +497,14 @@ function FeatureBlockTile({ block }: { block: FeatureBlock }) {
   );
 }
 
-function SpecTable() {
+// ───────────────────────────────────────────────────────────
+//  Specs-Tabelle
+// ───────────────────────────────────────────────────────────
+
+function SpecTable({ specs }: { specs: SpecRow[] }) {
   return (
     <div role="table" className="w-full">
-      {SPECS.map((spec, i) => (
+      {specs.map((spec, i) => (
         <div
           key={spec.label}
           role="row"
@@ -606,13 +540,11 @@ function SpecTable() {
   );
 }
 
-function CompatCardTile({
-  card,
-  children,
-}: {
-  card: CompatCard;
-  children?: ReactNode;
-}) {
+// ───────────────────────────────────────────────────────────
+//  Compatibility
+// ───────────────────────────────────────────────────────────
+
+function CompatCardTile({ card }: { card: CompatCard }) {
   return (
     <article
       className="bg-raised rounded-2xl"
@@ -653,12 +585,29 @@ function CompatCardTile({
         Verfügbar in:{" "}
         <span className="text-amber font-bold">SMART und SMART+</span>
       </p>
-      {children}
     </article>
   );
 }
 
+// ───────────────────────────────────────────────────────────
+//  Hauptseite
+// ───────────────────────────────────────────────────────────
+
 const Product = () => {
+  const { id } = useParams<{ id: string }>();
+  const product = id ? getProductById(id) : undefined;
+
+  // Scroll-Reset bei Produktwechsel
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, [id]);
+
+  if (!product) {
+    return <Navigate to="/collection" replace />;
+  }
+
+  const comingSoon = product.compatibility?.comingSoon ?? COMING_SOON_DEFAULT;
+
   return (
     <div className="bg-base min-h-screen">
       <Nav />
@@ -666,10 +615,8 @@ const Product = () => {
       {/* SEKTION 1 — HERO (Galerie + Info-Spalte) */}
       <section className="bg-base">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-[54fr_46fr] gap-8 items-start">
-          {/* LINKE SEITE — Galerie */}
-          <HeroGallery />
+          <HeroGallery product={product} />
 
-          {/* RECHTE SEITE — Info & CTA */}
           <div
             className="flex flex-col justify-center"
             style={{ padding: "2rem 1.5rem" }}
@@ -682,7 +629,7 @@ const Product = () => {
                   letterSpacing: "0.04em",
                 }}
               >
-                Produkte → Smart Bulbs → LM-A60SM RGB
+                Produkte → {product.category} → {product.sku}
               </p>
             </nav>
 
@@ -696,25 +643,34 @@ const Product = () => {
                 letterSpacing: "var(--tracking-btn)",
               }}
             >
-              SMART
+              {product.tier}
             </span>
 
             <h1
-              className="font-bold mb-2 fg-primary"
+              className="font-bold mb-1 fg-primary"
               style={{ fontSize: 42, letterSpacing: "-0.02em", lineHeight: 1.1 }}
             >
-              LM-A60SM RGB
+              {product.name}
             </h1>
+            <p
+              className="text-[11px] uppercase mb-4"
+              style={{
+                color: "rgba(242,242,242,0.30)",
+                letterSpacing: "0.08em",
+              }}
+            >
+              {product.sku}
+            </p>
 
             <p
               className="text-[13px] mb-8"
               style={{ color: "rgba(242,242,242,0.45)", lineHeight: 1.6 }}
             >
-              Smart Bulb E27 · RGB+CCT · 806 lm · Kein Hub erforderlich
+              {product.shortDescription}
             </p>
 
             <ul className="flex flex-col gap-3 mb-10">
-              {HERO_USPS.map((u) => (
+              {product.usps.map((u) => (
                 <li
                   key={u}
                   className="flex items-center gap-3 text-[12px]"
@@ -732,19 +688,30 @@ const Product = () => {
 
             <p
               className="font-bold mb-6 fg-primary"
-              style={{ fontSize: 36, letterSpacing: "-0.01em" }}
+              style={{
+                fontSize: product.price === null ? 24 : 36,
+                letterSpacing: "-0.01em",
+                color:
+                  product.price === null
+                    ? "rgba(242,242,242,0.65)"
+                    : "#F2F2F2",
+              }}
             >
-              €39,99
+              {formatPrice(product.price)}
             </p>
 
             <div className="flex flex-wrap gap-4">
               <a
-                href="https://www.amazon.de"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LM-A60SM RGB bei Amazon ansehen (öffnet in neuem Tab)"
+                href={product.cta.primaryHref}
+                target={product.cta.primaryExternal ? "_blank" : undefined}
+                rel={
+                  product.cta.primaryExternal
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                aria-label={`${product.name} – ${product.cta.primaryLabel}`}
               >
-                <AmberButton>Bei Amazon ansehen →</AmberButton>
+                <AmberButton>{product.cta.primaryLabel}</AmberButton>
               </a>
               <AmberButton
                 variant="ghost"
@@ -757,104 +724,105 @@ const Product = () => {
         </div>
       </section>
 
-      {/* SEKTION 2 — EINLEITUNGS-HERO (Vollbild-Banner) */}
-      <section
-        className="relative overflow-hidden w-full"
-        style={{ height: "70vh", minHeight: 480, maxHeight: 680 }}
-      >
-        {/* Hintergrundbild */}
-        <img
-          src="/images-optimized/hero/Farbvielfalt_3.webp"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-
-        {/* Gradient oben */}
-        <div
-          aria-hidden="true"
-          className="absolute top-0 left-0 right-0 pointer-events-none"
-          style={{
-            height: 180,
-            background: "linear-gradient(to bottom, #141210 0%, transparent 100%)",
-            zIndex: 2,
-          }}
-        />
-
-        {/* Gradient unten */}
-        <div
-          aria-hidden="true"
-          className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{
-            height: 180,
-            background: "linear-gradient(to top, #141210 0%, transparent 100%)",
-            zIndex: 2,
-          }}
-        />
-
-        {/* Amber-Glow */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 60%, rgba(232,160,96,0.08) 0%, transparent 70%)",
-            zIndex: 3,
-          }}
-        />
-
-        {/* Text */}
-        <div
-          className="absolute inset-0 flex flex-col items-center justify-center text-center"
-          style={{ zIndex: 10, padding: "0 2rem" }}
+      {/* SEKTION 2 — EINLEITUNGS-HERO (nur wenn vorhanden) */}
+      {product.introHero && (
+        <section
+          className="relative overflow-hidden w-full"
+          style={{ height: "70vh", minHeight: 480, maxHeight: 680 }}
         >
-          <p
-            className="font-bold uppercase mb-4"
+          <img
+            src={product.introHero.imageSrc}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute top-0 left-0 right-0 pointer-events-none"
             style={{
-              fontSize: 9,
-              color: "rgba(232,160,96,0.50)",
-              letterSpacing: "0.22em",
+              height: 180,
+              background:
+                "linear-gradient(to bottom, #141210 0%, transparent 100%)",
+              zIndex: 2,
             }}
-          >
-            LM-A60SM RGB
-          </p>
-          <h2
-            className="font-bold fg-primary"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute bottom-0 left-0 right-0 pointer-events-none"
             style={{
-              fontSize: "clamp(28px, 4vw, 52px)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.1,
-              maxWidth: 700,
-              textShadow: "0 2px 40px rgba(0,0,0,0.5)",
+              height: 180,
+              background:
+                "linear-gradient(to top, #141210 0%, transparent 100%)",
+              zIndex: 2,
             }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 50% 60%, rgba(232,160,96,0.08) 0%, transparent 70%)",
+              zIndex: 3,
+            }}
+          />
+          <div
+            className="absolute inset-0 flex flex-col items-center justify-center text-center"
+            style={{ zIndex: 10, padding: "0 2rem" }}
           >
-            Licht, das sich Deinem Tag anpasst.
-          </h2>
-        </div>
-      </section>
+            <p
+              className="font-bold uppercase mb-4"
+              style={{
+                fontSize: 9,
+                color: "rgba(232,160,96,0.50)",
+                letterSpacing: "0.22em",
+              }}
+            >
+              {product.introHero.eyebrow}
+            </p>
+            <h2
+              className="font-bold fg-primary"
+              style={{
+                fontSize: "clamp(28px, 4vw, 52px)",
+                letterSpacing: "-0.02em",
+                lineHeight: 1.1,
+                maxWidth: 700,
+                textShadow: "0 2px 40px rgba(0,0,0,0.5)",
+              }}
+            >
+              {product.introHero.headline}
+            </h2>
+          </div>
+        </section>
+      )}
 
       {/* SEKTION 3 — STICKY SUB-NAVIGATION */}
       <SubNav />
 
-      {/* SEKTION 4 — FEATURES */}
-      <section
-        id="features"
-        className="bg-base"
-        style={{ padding: "5rem 0", scrollMarginTop: SCROLL_OFFSET }}
-      >
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading
-            eyebrow="Features"
-            title="Was diese Lampe kann."
-            subtitle="Vier Kernfunktionen, die den Unterschied zwischen einer LED und einer LUMOnova ausmachen."
-          />
-          <div className="mt-12">
-            {FEATURES.map((block) => (
-              <FeatureBlockTile key={block.title} block={block} />
-            ))}
+      {/* SEKTION 4 — FEATURES (nur wenn vorhanden) */}
+      {product.features && product.features.length > 0 && (
+        <section
+          id="features"
+          className="bg-base"
+          style={{ padding: "5rem 0", scrollMarginTop: SCROLL_OFFSET }}
+        >
+          <div className="mx-auto max-w-7xl px-6">
+            <SectionHeading
+              eyebrow="Features"
+              title="Was dieses Produkt kann."
+              subtitle={
+                product.category === "Smart Bulbs"
+                  ? "Vier Kernfunktionen, die den Unterschied zwischen einer LED und einer LUMOnova ausmachen."
+                  : undefined
+              }
+            />
+            <div className="mt-12">
+              {product.features.map((block) => (
+                <FeatureBlockTile key={block.title} block={block} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* SEKTION 5 — SPECS */}
       <section
@@ -872,66 +840,68 @@ const Product = () => {
               />
             </div>
             <div>
-              <SpecTable />
+              <SpecTable specs={product.specs} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* SEKTION 6 — KOMPATIBILITÄT */}
-      <section className="bg-base" style={{ padding: "5rem 0" }}>
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading
-            eyebrow="Kompatibilität"
-            title="Vollständig integriert."
-          />
-          <div
-            className="mt-12 grid grid-cols-1 md:grid-cols-3"
-            style={{ gap: "1rem" }}
-          >
-            {COMPAT_AVAILABLE.map((card) => (
-              <CompatCardTile key={card.number} card={card} />
-            ))}
-          </div>
+      {/* SEKTION 6 — KOMPATIBILITÄT (nur bei Smart-Produkten) */}
+      {product.compatibility && (
+        <section className="bg-base" style={{ padding: "5rem 0" }}>
+          <div className="mx-auto max-w-7xl px-6">
+            <SectionHeading
+              eyebrow="Kompatibilität"
+              title="Vollständig integriert."
+            />
+            <div
+              className="mt-12 grid grid-cols-1 md:grid-cols-3"
+              style={{ gap: "1rem" }}
+            >
+              {product.compatibility.available.map((card) => (
+                <CompatCardTile key={card.number} card={card} />
+              ))}
+            </div>
 
-          <div
-            className="bg-raised rounded-2xl flex flex-col sm:flex-row sm:items-center gap-4"
-            style={{
-              padding: "1rem 1.5rem",
-              marginTop: "1rem",
-              border: "1px solid rgba(255,255,255,0.05)",
-            }}
-          >
-            <span
-              className="text-[10px] font-bold uppercase flex-shrink-0"
+            <div
+              className="bg-raised rounded-2xl flex flex-col sm:flex-row sm:items-center gap-4"
               style={{
-                color: "rgba(242,242,242,0.30)",
-                letterSpacing: "0.12em",
+                padding: "1rem 1.5rem",
+                marginTop: "1rem",
+                border: "1px solid rgba(255,255,255,0.05)",
               }}
             >
-              In Vorbereitung:
-            </span>
-            <ul className="flex flex-wrap gap-2">
-              {COMPAT_COMING.map((label) => (
-                <li
-                  key={label}
-                  className="rounded-full uppercase font-bold select-none"
-                  style={{
-                    fontSize: 10,
-                    padding: "4px 14px",
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    color: "rgba(242,242,242,0.35)",
-                    letterSpacing: "var(--tracking-btn)",
-                  }}
-                >
-                  {label}
-                </li>
-              ))}
-            </ul>
+              <span
+                className="text-[10px] font-bold uppercase flex-shrink-0"
+                style={{
+                  color: "rgba(242,242,242,0.30)",
+                  letterSpacing: "0.12em",
+                }}
+              >
+                In Vorbereitung:
+              </span>
+              <ul className="flex flex-wrap gap-2">
+                {comingSoon.map((label) => (
+                  <li
+                    key={label}
+                    className="rounded-full uppercase font-bold select-none"
+                    style={{
+                      fontSize: 10,
+                      padding: "4px 14px",
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      color: "rgba(242,242,242,0.35)",
+                      letterSpacing: "var(--tracking-btn)",
+                    }}
+                  >
+                    {label}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* SEKTION 7 — REZENSIONEN */}
       <section
