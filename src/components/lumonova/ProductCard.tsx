@@ -139,7 +139,7 @@ export function ProductCard({
             <p
               className="text-[11px] mt-1 uppercase"
               style={{
-                color: "rgba(242,242,242,0.25)",
+                color: "rgba(242,242,242,0.45)",
                 letterSpacing: "0.06em",
               }}
             >
@@ -152,7 +152,7 @@ export function ProductCard({
               style={{
                 fontSize: priceIsRequest ? 13 : 17,
                 color: priceIsRequest
-                  ? "rgba(242,242,242,0.55)"
+                  ? "rgba(242,242,242,0.65)"
                   : "#F2F2F2",
               }}
             >

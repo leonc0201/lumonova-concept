@@ -66,13 +66,13 @@
   color: rgba(242, 242, 242, 0.82);
 }
 @utility fg-mid {
-  color: rgba(242, 242, 242, 0.45);
+  color: rgba(242, 242, 242, 0.60);
 }
 @utility fg-low {
-  color: rgba(242, 242, 242, 0.28);
+  color: rgba(242, 242, 242, 0.45);
 }
 @utility fg-minimal {
-  color: rgba(242, 242, 242, 0.18);
+  color: rgba(242, 242, 242, 0.35);
 }
 @utility fg-ghost {
   color: rgba(242, 242, 242, 0.08);

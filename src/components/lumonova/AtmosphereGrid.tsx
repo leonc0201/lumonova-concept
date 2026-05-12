@@ -54,7 +54,7 @@ function SceneTile({ scene, large = false }: { scene: Scene; large?: boolean }) 
         <div className="absolute inset-0 flex items-center justify-center">
           <p
             className="text-[12px] italic text-center"
-            style={{ color: "rgba(242,242,242,0.15)" }}
+            style={{ color: "rgba(242,242,242,0.35)" }}
           >
             {scene.label}
           </p>

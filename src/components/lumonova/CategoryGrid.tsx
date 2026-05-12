@@ -97,7 +97,7 @@ function CategoryCard({ category }: { category: Category }) {
       </h3>
       <p
         className="text-[14px] mb-6"
-        style={{ color: "rgba(242,242,242,0.40)", lineHeight: 1.6 }}
+        style={{ color: "rgba(242,242,242,0.55)", lineHeight: 1.6 }}
       >
         {description}
       </p>
@@ -126,7 +126,7 @@ function CategoryCard({ category }: { category: Category }) {
               fontSize: 11,
               padding: "3px 10px",
               background: "rgba(255,255,255,0.06)",
-              color: "rgba(242,242,242,0.30)",
+              color: "rgba(242,242,242,0.50)",
               letterSpacing: "0.06em",
             }}
           >

@@ -58,7 +58,7 @@ export function TrustRow() {
             </p>
             <p
               className="text-[12px] mt-1"
-              style={{ color: "rgba(242,242,242,0.28)", lineHeight: 1.55 }}
+              style={{ color: "rgba(242,242,242,0.45)", lineHeight: 1.55 }}
             >
               {item.subtext}
             </p>

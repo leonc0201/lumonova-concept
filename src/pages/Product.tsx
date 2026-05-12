@@ -16,7 +16,6 @@ import {
 const TABS = [
   { id: "features", label: "Beschreibung" },
   { id: "specs", label: "Technische Daten" },
-  { id: "reviews", label: "Rezensionen" },
 ];
 
 const SCROLL_OFFSET = 120;
@@ -184,7 +183,7 @@ function HeroGallery({ product }: { product: ProductData }) {
             <p
               className="relative italic text-[15px]"
               style={{
-                color: "rgba(242,242,242,0.20)",
+                color: "rgba(242,242,242,0.35)",
                 zIndex: 10,
                 letterSpacing: "0.06em",
               }}
@@ -296,7 +295,7 @@ function HeroGallery({ product }: { product: ProductData }) {
                   className="uppercase"
                   style={{
                     fontSize: 10,
-                    color: "rgba(242,242,242,0.20)",
+                    color: "rgba(242,242,242,0.35)",
                     letterSpacing: "0.06em",
                   }}
                 >
@@ -377,7 +376,7 @@ function SubNav() {
                     letterSpacing: "0.04em",
                     color: isActive
                       ? "var(--color-amber)"
-                      : "rgba(242,242,242,0.40)",
+                      : "rgba(242,242,242,0.55)",
                     paddingBottom: 2,
                     borderBottom: `2px solid ${
                       isActive ? "var(--color-amber)" : "transparent"
@@ -417,7 +416,7 @@ function FeatureImage({ src, alt }: { src?: string; alt?: string }) {
         <div className="absolute inset-0 flex items-center justify-center">
           <p
             className="text-[12px] italic text-center"
-            style={{ color: "rgba(242,242,242,0.15)" }}
+            style={{ color: "rgba(242,242,242,0.35)" }}
           >
             FEATURE-BILD / 1600 × 1200
           </p>
@@ -459,7 +458,7 @@ function FeatureText({
       </h3>
       <p
         className="text-[15px]"
-        style={{ color: "rgba(242,242,242,0.45)", lineHeight: 1.7 }}
+        style={{ color: "rgba(242,242,242,0.60)", lineHeight: 1.7 }}
       >
         {text}
       </p>
@@ -518,7 +517,7 @@ function SpecTable({ specs }: { specs: SpecRow[] }) {
           <div
             role="rowheader"
             className="text-[15px]"
-            style={{ color: "rgba(242,242,242,0.45)", fontWeight: 500 }}
+            style={{ color: "rgba(242,242,242,0.60)", fontWeight: 500 }}
           >
             {spec.label}
           </div>
@@ -580,7 +579,7 @@ function CompatCardTile({ card }: { card: CompatCard }) {
       <h3 className="text-[15px] font-bold fg-primary mb-1">{card.name}</h3>
       <p
         className="text-[13px]"
-        style={{ color: "rgba(242,242,242,0.40)" }}
+        style={{ color: "rgba(242,242,242,0.55)" }}
       >
         Verfügbar in:{" "}
         <span className="text-amber font-bold">SMART und SMART+</span>
@@ -625,7 +624,7 @@ const Product = () => {
               <p
                 className="text-[11px] mb-8"
                 style={{
-                  color: "rgba(242,242,242,0.28)",
+                  color: "rgba(242,242,242,0.45)",
                   letterSpacing: "0.04em",
                 }}
               >
@@ -655,7 +654,7 @@ const Product = () => {
             <p
               className="text-[12px] uppercase mb-4"
               style={{
-                color: "rgba(242,242,242,0.30)",
+                color: "rgba(242,242,242,0.50)",
                 letterSpacing: "0.08em",
               }}
             >
@@ -664,7 +663,7 @@ const Product = () => {
 
             <p
               className="text-[14px] mb-8"
-              style={{ color: "rgba(242,242,242,0.45)", lineHeight: 1.6 }}
+              style={{ color: "rgba(242,242,242,0.60)", lineHeight: 1.6 }}
             >
               {product.shortDescription}
             </p>
@@ -674,7 +673,7 @@ const Product = () => {
                 <li
                   key={u}
                   className="flex items-center gap-3 text-[13px]"
-                  style={{ color: "rgba(242,242,242,0.55)" }}
+                  style={{ color: "rgba(242,242,242,0.65)" }}
                 >
                   <span
                     aria-hidden="true"
@@ -874,7 +873,7 @@ const Product = () => {
               <span
                 className="text-[11px] font-bold uppercase flex-shrink-0"
                 style={{
-                  color: "rgba(242,242,242,0.30)",
+                  color: "rgba(242,242,242,0.50)",
                   letterSpacing: "0.12em",
                 }}
               >
@@ -903,57 +902,7 @@ const Product = () => {
         </section>
       )}
 
-      {/* SEKTION 7 — REZENSIONEN */}
-      <section
-        id="reviews"
-        className="bg-mid"
-        style={{ padding: "4rem 0", scrollMarginTop: SCROLL_OFFSET }}
-      >
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading
-            eyebrow="Rezensionen"
-            title="Was Kunden sagen."
-          />
-          <div
-            className="rounded-2xl text-center"
-            style={{
-              background: "var(--color-raised)",
-              border: "1px solid rgba(255,255,255,0.06)",
-              padding: "3rem",
-              marginTop: "2rem",
-            }}
-          >
-            <div
-              className="flex justify-center items-center gap-1 mb-4"
-              aria-hidden="true"
-            >
-              {[1, 2, 3, 4, 5].map((i) => (
-                <span
-                  key={i}
-                  className="material-symbols-outlined"
-                  style={{ fontSize: 24, color: "rgba(232,160,96,0.30)" }}
-                >
-                  star
-                </span>
-              ))}
-            </div>
-            <p
-              className="text-[15px] mb-2"
-              style={{ color: "rgba(242,242,242,0.30)" }}
-            >
-              Sei der Erste, der dieses Produkt bewertet.
-            </p>
-            <p
-              className="text-[12px]"
-              style={{ color: "rgba(242,242,242,0.18)" }}
-            >
-              Rezensionen werden nach dem Launch hier erscheinen.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SEKTION 8 — TRUST */}
+      {/* SEKTION 7 — TRUST */}
       <section className="bg-base py-20">
         <div className="mx-auto max-w-7xl px-6">
           <TrustRow />

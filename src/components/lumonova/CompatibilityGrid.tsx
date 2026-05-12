@@ -69,7 +69,7 @@ function CompatCard({ item }: { item: AvailableItem }) {
       </div>
 
       <h3 className="fg-high text-[17px] font-bold mt-5">{item.name}</h3>
-      <p className="text-[12px] mt-1" style={{ color: "rgba(242,242,242,0.40)" }}>
+      <p className="text-[12px] mt-1" style={{ color: "rgba(242,242,242,0.55)" }}>
         Verfügbar in:{" "}
         <span className="text-amber font-medium">{item.availability}</span>
       </p>
@@ -98,7 +98,7 @@ export function CompatibilityGrid() {
         <span
           className="text-[11px] font-bold uppercase flex-shrink-0"
           style={{
-            color: "rgba(242,242,242,0.45)",
+            color: "rgba(242,242,242,0.60)",
             letterSpacing: "var(--tracking-label)",
           }}
         >

@@ -137,7 +137,7 @@ function MegaCategoryTile({
             fontSize: 19,
             color: cat.available
               ? "var(--color-amber)"
-              : "rgba(242,242,242,0.20)",
+              : "rgba(242,242,242,0.35)",
           }}
         >
           {cat.icon}
@@ -158,7 +158,7 @@ function MegaCategoryTile({
               className="rounded-full uppercase font-bold"
               style={{
                 fontSize: 10,
-                color: "rgba(242,242,242,0.25)",
+                color: "rgba(242,242,242,0.45)",
                 background: "rgba(255,255,255,0.06)",
                 padding: "2px 7px",
                 letterSpacing: "0.08em",
@@ -237,7 +237,7 @@ function MegaTierRow({
           fontSize: 12,
           color: tier.available
             ? "var(--color-amber)"
-            : "rgba(242,242,242,0.25)",
+            : "rgba(242,242,242,0.45)",
         }}
         aria-hidden="true"
       >
@@ -258,7 +258,7 @@ function MegaTierRow({
               className="rounded-full uppercase font-bold"
               style={{
                 fontSize: 10,
-                color: "rgba(242,242,242,0.25)",
+                color: "rgba(242,242,242,0.45)",
                 background: "rgba(255,255,255,0.06)",
                 padding: "2px 7px",
                 letterSpacing: "0.08em",
@@ -373,7 +373,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
                   style={{
                     padding: "0.5rem 0.75rem",
                     fontSize: 14,
-                    color: "rgba(242,242,242,0.45)",
+                    color: "rgba(242,242,242,0.60)",
                   }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.color =
@@ -381,7 +381,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.color =
-                      "rgba(242,242,242,0.45)")
+                      "rgba(242,242,242,0.60)")
                   }
                 >
                   <span
@@ -417,14 +417,14 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
           className="flex items-center transition-colors"
           style={{
             fontSize: 13,
-            color: "rgba(242,242,242,0.40)",
+            color: "rgba(242,242,242,0.55)",
             fontWeight: 500,
           }}
           onMouseEnter={(e) =>
             (e.currentTarget.style.color = "rgba(242,242,242,0.70)")
           }
           onMouseLeave={(e) =>
-            (e.currentTarget.style.color = "rgba(242,242,242,0.40)")
+            (e.currentTarget.style.color = "rgba(242,242,242,0.55)")
           }
         >
           Alle Produkte ansehen
@@ -443,7 +443,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
 
         <p
           className="text-[13px]"
-          style={{ color: "rgba(242,242,242,0.20)" }}
+          style={{ color: "rgba(242,242,242,0.35)" }}
         >
           {PRODUCTS.length} Produkte verfügbar
         </p>
@@ -570,7 +570,7 @@ export function Nav() {
                 style={{
                   color: megaOpen
                     ? "var(--color-amber)"
-                    : "rgba(242,242,242,0.45)",
+                    : "rgba(242,242,242,0.60)",
                 }}
               >
                 Produkte

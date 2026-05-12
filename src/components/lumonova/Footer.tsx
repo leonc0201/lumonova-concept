@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 
 const productLinks = ["CLASSIC", "CLASSIC+", "SMART", "SMART+"];
-const legalLinks = ["Impressum", "Datenschutz", "AGB", "Widerruf"];
+
+interface LegalLink {
+  label: string;
+  to?: string;
+}
+
+const legalLinks: LegalLink[] = [
+  { label: "Impressum", to: "/impressum" },
+  { label: "Datenschutz", to: "/datenschutz" },
+  { label: "AGB" },
+  { label: "Widerruf" },
+];
 
 export function Footer() {
   return (
@@ -23,7 +34,7 @@ export function Footer() {
             </Link>
             <p
               className="text-[13px] max-w-[260px]"
-              style={{ color: "rgba(242,242,242,0.15)", lineHeight: 1.6 }}
+              style={{ color: "rgba(242,242,242,0.35)", lineHeight: 1.6 }}
             >
               European Smart Lighting. No Hub. No Lock-in.
             </p>
@@ -46,12 +57,12 @@ export function Footer() {
                   <a
                     href="#"
                     className="text-[12px] transition-colors"
-                    style={{ color: "rgba(242,242,242,0.22)" }}
+                    style={{ color: "rgba(242,242,242,0.45)" }}
                     onMouseEnter={(e) =>
                       (e.currentTarget.style.color = "rgba(242,242,242,0.60)")
                     }
                     onMouseLeave={(e) =>
-                      (e.currentTarget.style.color = "rgba(242,242,242,0.22)")
+                      (e.currentTarget.style.color = "rgba(242,242,242,0.45)")
                     }
                   >
                     {p}
@@ -73,23 +84,40 @@ export function Footer() {
               Rechtliches
             </h3>
             <ul className="flex flex-col gap-3">
-              {legalLinks.map((l) => (
-                <li key={l}>
-                  <a
-                    href="#"
-                    className="text-[12px] transition-colors"
-                    style={{ color: "rgba(242,242,242,0.22)" }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.color = "rgba(242,242,242,0.60)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.color = "rgba(242,242,242,0.22)")
-                    }
-                  >
-                    {l}
-                  </a>
-                </li>
-              ))}
+              {legalLinks.map((l) =>
+                l.to ? (
+                  <li key={l.label}>
+                    <Link
+                      to={l.to}
+                      className="text-[12px] transition-colors"
+                      style={{ color: "rgba(242,242,242,0.45)" }}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.color =
+                          "rgba(242,242,242,0.60)")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.color =
+                          "rgba(242,242,242,0.45)")
+                      }
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ) : (
+                  <li key={l.label}>
+                    <span
+                      className="text-[12px]"
+                      style={{
+                        color: "rgba(242,242,242,0.25)",
+                        cursor: "default",
+                      }}
+                      title="folgt zum Launch"
+                    >
+                      {l.label}
+                    </span>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
@@ -106,7 +134,7 @@ export function Footer() {
             </h3>
             <ul
               className="flex flex-col gap-3 text-[12px]"
-              style={{ color: "rgba(242,242,242,0.22)" }}
+              style={{ color: "rgba(242,242,242,0.45)" }}
             >
               <li>
                 <a
@@ -129,7 +157,7 @@ export function Footer() {
         >
           <p
             className="text-[11px]"
-            style={{ color: "rgba(242,242,242,0.10)" }}
+            style={{ color: "rgba(242,242,242,0.40)" }}
           >
             © 2026 C&amp;L Handels GmbH, Willich, Deutschland
           </p>
@@ -139,7 +167,7 @@ export function Footer() {
                 key={c}
                 className="text-[10px] font-medium uppercase px-2 py-1"
                 style={{
-                  color: "rgba(242,242,242,0.18)",
+                  color: "rgba(242,242,242,0.35)",
                   border: "1px solid rgba(255,255,255,0.06)",
                   letterSpacing: "0.10em",
                 }}

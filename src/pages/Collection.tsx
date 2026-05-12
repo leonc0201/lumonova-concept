@@ -97,7 +97,7 @@ function ChipRow({ label, options, active, onChange }: ChipRowProps) {
       <p
         className="text-[10px] font-bold uppercase mb-3"
         style={{
-          color: "rgba(242,242,242,0.30)",
+          color: "rgba(242,242,242,0.50)",
           letterSpacing: "0.16em",
         }}
       >
@@ -194,7 +194,7 @@ const Collection = () => {
           >
             <p
               className="text-[13px] font-medium"
-              style={{ color: "rgba(242,242,242,0.30)" }}
+              style={{ color: "rgba(242,242,242,0.50)" }}
               aria-live="polite"
             >
               {filtered.length}{" "}
@@ -248,7 +248,7 @@ const Collection = () => {
                 className="material-symbols-outlined block mb-4"
                 style={{
                   fontSize: 48,
-                  color: "rgba(242,242,242,0.15)",
+                  color: "rgba(242,242,242,0.35)",
                 }}
                 aria-hidden="true"
               >
@@ -256,13 +256,13 @@ const Collection = () => {
               </span>
               <p
                 className="text-[17px] font-bold mb-2"
-                style={{ color: "rgba(242,242,242,0.40)" }}
+                style={{ color: "rgba(242,242,242,0.55)" }}
               >
                 Keine Produkte gefunden.
               </p>
               <p
                 className="text-[14px] mb-6"
-                style={{ color: "rgba(242,242,242,0.25)" }}
+                style={{ color: "rgba(242,242,242,0.45)" }}
               >
                 Versuche einen anderen Filter.
               </p>
