@@ -75,17 +75,17 @@ function TierCard({ tier }: { tier: TierData }) {
               boxShadow: "0 20px 50px rgba(232,160,96,0.10)",
             }
           : {
-              background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.05)",
+              background: "var(--color-raised)",
+              border: "1px solid rgba(255,255,255,0.08)",
             }
       }
       onMouseEnter={(e) => {
         if (!isRecommended)
-          e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+          e.currentTarget.style.background = "var(--color-hover)";
       }}
       onMouseLeave={(e) => {
         if (!isRecommended)
-          e.currentTarget.style.background = "rgba(255,255,255,0.02)";
+          e.currentTarget.style.background = "var(--color-raised)";
       }}
     >
       {/* Oben */}

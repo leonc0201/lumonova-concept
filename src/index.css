@@ -100,10 +100,10 @@
   background-size: 40px 40px;
 }
 
-/* Karten-Grundoberfläche (rounded, dezent gerahmt – Lovable-Stil beibehalten) */
+/* Karten-Grundoberfläche – solide statt semitransparent (kein Glassmorphism mehr) */
 @utility surface-soft {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--color-raised);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1rem;
 }
 

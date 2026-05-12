@@ -43,8 +43,8 @@ export function TierLadder() {
     <motion.div
       className="rounded-2xl p-10 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-center"
       style={{
-        background: "rgba(255,255,255,0.02)",
-        border: "1px solid rgba(255,255,255,0.06)",
+        background: "var(--color-raised)",
+        border: "1px solid rgba(255,255,255,0.08)",
       }}
       initial="hidden"
       whileInView="visible"

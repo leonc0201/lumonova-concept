@@ -71,14 +71,14 @@ export function ProductCard({
       <article
         className="group flex flex-col rounded-xl overflow-hidden cursor-pointer transition-colors duration-200 h-full"
         style={{
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid rgba(255,255,255,0.05)",
+          background: "var(--color-raised)",
+          border: "1px solid rgba(255,255,255,0.08)",
         }}
         onMouseEnter={(e) =>
           (e.currentTarget.style.borderColor = "rgba(232,160,96,0.25)")
         }
         onMouseLeave={(e) =>
-          (e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)")
+          (e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)")
         }
       >
         {/* Bild-Bereich */}

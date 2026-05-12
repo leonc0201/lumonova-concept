@@ -37,8 +37,8 @@ function CompatCard({ item }: { item: AvailableItem }) {
     <article
       className="rounded-2xl p-6 flex flex-col"
       style={{
-        background: "rgba(255,255,255,0.02)",
-        border: "1px solid rgba(255,255,255,0.05)",
+        background: "var(--color-raised)",
+        border: "1px solid rgba(255,255,255,0.08)",
       }}
     >
       <span
@@ -91,8 +91,8 @@ export function CompatibilityGrid() {
       <div
         className="mt-8 rounded-2xl px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6"
         style={{
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid rgba(255,255,255,0.05)",
+          background: "var(--color-raised)",
+          border: "1px solid rgba(255,255,255,0.08)",
         }}
       >
         <span

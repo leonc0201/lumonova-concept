@@ -50,11 +50,11 @@ function CategoryCard({ category }: { category: Category }) {
         available ? "cursor-pointer hover:-translate-y-1" : ""
       }`}
       style={{
-        background: "rgba(255,255,255,0.03)",
+        background: "var(--color-raised)",
         border: `1px solid ${
           available && hover
             ? "rgba(232,160,96,0.25)"
-            : "rgba(255,255,255,0.06)"
+            : "rgba(255,255,255,0.08)"
         }`,
         borderRadius: "1rem",
       }}
