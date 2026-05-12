@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..700,0..1,-50..200&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", Arial, sans-serif;
+
+  /* Surface / Background-Töne */
+  --color-deepest: #0a0908;
+  --color-mid: #0e0d0b;
+  --color-base: #141210;
+  --color-raised: #1a1814;
+  --color-hover: #201e1b;
+
+  /* Akzent */
+  --color-amber: #e8a060;
+  --color-amber-dark: #c9893d;
+
+  /* Funktional */
+  --color-success: #4caf8a;
+
+  /* Letter-Spacing */
+  --tracking-logo: 0.20em;
+  --tracking-label: 0.18em;
+  --tracking-btn: 0.10em;
+  --tracking-eyebrow: 0.22em;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    background: var(--color-base);
+    color: rgba(242, 242, 242, 0.82);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: "liga";
+  }
+}
+
+/* Text-Opazitäts-Hierarchie (Naming bewusst mit fg-Präfix, vermeidet Konflikt mit bg-Tokens) */
+@utility fg-primary {
+  color: rgba(242, 242, 242, 1);
+}
+@utility fg-high {
+  color: rgba(242, 242, 242, 0.82);
+}
+@utility fg-mid {
+  color: rgba(242, 242, 242, 0.45);
+}
+@utility fg-low {
+  color: rgba(242, 242, 242, 0.28);
+}
+@utility fg-minimal {
+  color: rgba(242, 242, 242, 0.18);
+}
+@utility fg-ghost {
+  color: rgba(242, 242, 242, 0.08);
+}
+
+/* Border-Hierarchie */
+@utility border-soft {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+@utility border-softer {
+  border-color: rgba(255, 255, 255, 0.04);
+}
+@utility border-softest {
+  border-color: rgba(255, 255, 255, 0.03);
+}
+@utility border-strong {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Hero-Grid – sehr dezente Linien-Textur */
+@utility hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Karten-Grundoberfläche (rounded, dezent gerahmt – Lovable-Stil beibehalten) */
+@utility surface-soft {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+}
+
+/* Scrollbar verstecken (Cross-Browser) – für horizontale Filter-Chips */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
