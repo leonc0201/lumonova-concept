@@ -25,7 +25,6 @@ const productCardVariant = {
 };
 
 const usps = [
-  "Europäische Marke",
   "Matter over Wi-Fi",
   "Kein Hub erforderlich",
   "3 Jahre EU-Garantie",
@@ -101,7 +100,7 @@ const Index = () => {
               className="text-[12px] uppercase text-amber mb-6"
               style={{ letterSpacing: "var(--tracking-label)" }}
             >
-              Smart Lighting · Europäische Marke
+              Smart Lighting
             </p>
             <h1 className="text-[64px] sm:text-[84px] lg:text-[104px] font-bold leading-[0.95] tracking-tight">
               <span className="block fg-primary">Kein Hub.</span>
@@ -127,7 +126,7 @@ const Index = () => {
       {/* USP BAR – jetzt bg-base, integriert sich nahtlos mit Hero und Categories */}
       <section className="bg-base py-6">
         <div className="mx-auto max-w-7xl px-6">
-          <ul className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {usps.map((u) => (
               <li
                 key={u}

@@ -531,7 +531,7 @@ export function Nav() {
               letterSpacing: "0.06em",
             }}
           >
-            Europäische Marke · Matter over Wi-Fi · 3 Jahre EU-Garantie
+            Matter over Wi-Fi · 3 Jahre EU-Garantie
           </p>
         </div>
       </div>
