@@ -42,7 +42,7 @@ function CompatCard({ item }: { item: AvailableItem }) {
       }}
     >
       <span
-        className="text-[10px] font-bold mb-4"
+        className="text-[11px] font-bold mb-4"
         style={{
           color: "rgba(232,160,96,0.45)",
           letterSpacing: "var(--tracking-label)",
@@ -68,8 +68,8 @@ function CompatCard({ item }: { item: AvailableItem }) {
         />
       </div>
 
-      <h3 className="fg-high text-[16px] font-bold mt-5">{item.name}</h3>
-      <p className="text-[11px] mt-1" style={{ color: "rgba(242,242,242,0.40)" }}>
+      <h3 className="fg-high text-[17px] font-bold mt-5">{item.name}</h3>
+      <p className="text-[12px] mt-1" style={{ color: "rgba(242,242,242,0.40)" }}>
         Verfügbar in:{" "}
         <span className="text-amber font-medium">{item.availability}</span>
       </p>
@@ -96,7 +96,7 @@ export function CompatibilityGrid() {
         }}
       >
         <span
-          className="text-[10px] font-bold uppercase flex-shrink-0"
+          className="text-[11px] font-bold uppercase flex-shrink-0"
           style={{
             color: "rgba(242,242,242,0.45)",
             letterSpacing: "var(--tracking-label)",
@@ -108,7 +108,7 @@ export function CompatibilityGrid() {
           {COMING_SOON.map((label) => (
             <li
               key={label}
-              className="rounded-full px-4 py-1.5 text-[10px] font-bold uppercase"
+              className="rounded-full px-4 py-1.5 text-[11px] font-bold uppercase"
               style={{
                 color: "var(--color-amber)",
                 background: "rgba(232,160,96,0.06)",

@@ -53,7 +53,7 @@ function SceneTile({ scene, large = false }: { scene: Scene; large?: boolean }) 
       ) : (
         <div className="absolute inset-0 flex items-center justify-center">
           <p
-            className="text-[11px] italic text-center"
+            className="text-[12px] italic text-center"
             style={{ color: "rgba(242,242,242,0.15)" }}
           >
             {scene.label}
@@ -64,7 +64,7 @@ function SceneTile({ scene, large = false }: { scene: Scene; large?: boolean }) 
       {/* Caption-Overlay unten */}
       {scene.imageSrc && (
         <figcaption
-          className="absolute left-0 right-0 bottom-0 px-4 py-3 text-[11px]"
+          className="absolute left-0 right-0 bottom-0 px-4 py-3 text-[12px]"
           style={{
             color: "rgba(242,242,242,0.85)",
             background:

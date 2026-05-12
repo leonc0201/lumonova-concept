@@ -134,7 +134,7 @@ function MegaCategoryTile({
         <span
           className="material-symbols-outlined"
           style={{
-            fontSize: 18,
+            fontSize: 19,
             color: cat.available
               ? "var(--color-amber)"
               : "rgba(242,242,242,0.20)",
@@ -146,7 +146,7 @@ function MegaCategoryTile({
 
       <div className="min-w-0 flex-1">
         <p
-          className="text-[13px] font-bold flex items-center flex-wrap"
+          className="text-[14px] font-bold flex items-center flex-wrap"
           style={{
             color: "rgba(242,242,242,0.85)",
             marginBottom: 2,
@@ -157,7 +157,7 @@ function MegaCategoryTile({
             <span
               className="rounded-full uppercase font-bold"
               style={{
-                fontSize: 9,
+                fontSize: 10,
                 color: "rgba(242,242,242,0.25)",
                 background: "rgba(255,255,255,0.06)",
                 padding: "2px 7px",
@@ -170,7 +170,7 @@ function MegaCategoryTile({
           )}
         </p>
         <p
-          className="text-[11px]"
+          className="text-[12px]"
           style={{ color: "rgba(242,242,242,0.35)" }}
         >
           {cat.desc}
@@ -234,7 +234,7 @@ function MegaTierRow({
               ? "rgba(232,160,96,0.20)"
               : "rgba(255,255,255,0.08)"
           }`,
-          fontSize: 11,
+          fontSize: 12,
           color: tier.available
             ? "var(--color-amber)"
             : "rgba(242,242,242,0.25)",
@@ -246,7 +246,7 @@ function MegaTierRow({
 
       <div className="min-w-0 flex-1">
         <p
-          className="text-[13px] font-bold flex items-center flex-wrap"
+          className="text-[14px] font-bold flex items-center flex-wrap"
           style={{
             color: "rgba(242,242,242,0.85)",
             marginBottom: 2,
@@ -257,7 +257,7 @@ function MegaTierRow({
             <span
               className="rounded-full uppercase font-bold"
               style={{
-                fontSize: 9,
+                fontSize: 10,
                 color: "rgba(242,242,242,0.25)",
                 background: "rgba(255,255,255,0.06)",
                 padding: "2px 7px",
@@ -270,7 +270,7 @@ function MegaTierRow({
           )}
         </p>
         <p
-          className="text-[11px]"
+          className="text-[12px]"
           style={{ color: "rgba(242,242,242,0.35)" }}
         >
           {tier.desc}
@@ -312,7 +312,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
         {/* Spalte 1 – Kategorien */}
         <div>
           <p
-            className="text-[9px] font-bold uppercase mb-5"
+            className="text-[10px] font-bold uppercase mb-5"
             style={COL_LABEL_STYLE}
           >
             Kategorien
@@ -334,7 +334,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
         {/* Spalte 2 – Tiers */}
         <div>
           <p
-            className="text-[9px] font-bold uppercase mb-5"
+            className="text-[10px] font-bold uppercase mb-5"
             style={COL_LABEL_STYLE}
           >
             Produktlinien
@@ -358,7 +358,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
           }}
         >
           <p
-            className="text-[9px] font-bold uppercase mb-5"
+            className="text-[10px] font-bold uppercase mb-5"
             style={COL_LABEL_STYLE}
           >
             Mehr
@@ -372,7 +372,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
                   className="flex items-center gap-2 rounded-lg transition-colors hover:bg-[rgba(255,255,255,0.03)] group"
                   style={{
                     padding: "0.5rem 0.75rem",
-                    fontSize: 13,
+                    fontSize: 14,
                     color: "rgba(242,242,242,0.45)",
                   }}
                   onMouseEnter={(e) =>
@@ -387,7 +387,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
                   <span
                     className="material-symbols-outlined"
                     style={{
-                      fontSize: 14,
+                      fontSize: 15,
                       color: "rgba(232,160,96,0.50)",
                     }}
                     aria-hidden="true"
@@ -416,7 +416,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
           onClick={onLinkClick}
           className="flex items-center transition-colors"
           style={{
-            fontSize: 12,
+            fontSize: 13,
             color: "rgba(242,242,242,0.40)",
             fontWeight: 500,
           }}
@@ -431,7 +431,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
           <span
             className="material-symbols-outlined"
             style={{
-              fontSize: 14,
+              fontSize: 15,
               color: "var(--color-amber)",
               marginLeft: 6,
             }}
@@ -442,7 +442,7 @@ function MegaPanelContent({ onLinkClick }: { onLinkClick: () => void }) {
         </Link>
 
         <p
-          className="text-[12px]"
+          className="text-[13px]"
           style={{ color: "rgba(242,242,242,0.20)" }}
         >
           {PRODUCTS.length} Produkte verfügbar
@@ -525,7 +525,7 @@ export function Nav() {
       >
         <div className="mx-auto max-w-7xl px-6 py-2 text-center">
           <p
-            className="text-[11px]"
+            className="text-[12px]"
             style={{
               color: "rgba(232,160,96,0.65)",
               letterSpacing: "0.06em",
@@ -566,7 +566,7 @@ export function Nav() {
                 onClick={() => setMegaOpen((o) => !o)}
                 aria-haspopup="true"
                 aria-expanded={megaOpen}
-                className="flex items-center gap-1 text-[12px] transition-colors cursor-pointer"
+                className="flex items-center gap-1 text-[13px] transition-colors cursor-pointer"
                 style={{
                   color: megaOpen
                     ? "var(--color-amber)"
@@ -577,7 +577,7 @@ export function Nav() {
                 <span
                   className="material-symbols-outlined"
                   style={{
-                    fontSize: 16,
+                    fontSize: 17,
                     transform: megaOpen
                       ? "rotate(180deg)"
                       : "rotate(0)",
@@ -595,7 +595,7 @@ export function Nav() {
                 <NavLink
                   to={l.to}
                   className={({ isActive }) =>
-                    `text-[12px] transition-colors ${
+                    `text-[13px] transition-colors ${
                       isActive ? "text-amber" : "fg-mid hover:text-amber"
                     }`
                   }
@@ -609,7 +609,7 @@ export function Nav() {
           {/* Rechts */}
           <div className="flex items-center gap-5">
             <div
-              className="hidden sm:flex items-center gap-2 text-[11px]"
+              className="hidden sm:flex items-center gap-2 text-[12px]"
               style={{ letterSpacing: "0.10em" }}
               aria-label="Sprache"
             >
@@ -661,13 +661,13 @@ export function Nav() {
                   }}
                   aria-haspopup="true"
                   aria-expanded={megaOpen}
-                  className="flex items-center gap-1 py-2 text-[13px] fg-mid"
+                  className="flex items-center gap-1 py-2 text-[14px] fg-mid"
                 >
                   Produkte
                   <span
                     className="material-symbols-outlined"
                     style={{
-                      fontSize: 16,
+                      fontSize: 17,
                       transform: megaOpen
                         ? "rotate(180deg)"
                         : "rotate(0)",
@@ -685,7 +685,7 @@ export function Nav() {
                     to={l.to}
                     onClick={() => setMobileOpen(false)}
                     className={({ isActive }) =>
-                      `block py-2 text-[13px] ${
+                      `block py-2 text-[14px] ${
                         isActive ? "text-amber" : "fg-mid"
                       }`
                     }

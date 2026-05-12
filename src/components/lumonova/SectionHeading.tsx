@@ -21,7 +21,7 @@ export function SectionHeading({
         />
       )}
       <p
-        className="text-[9px] font-bold uppercase mb-2.5"
+        className="text-[10px] font-bold uppercase mb-2.5"
         style={{
           color: "rgba(232,160,96,0.55)",
           letterSpacing: "var(--tracking-eyebrow)",
@@ -35,7 +35,7 @@ export function SectionHeading({
         {title}
       </h2>
       {subtitle && (
-        <p className="fg-low text-[13px] max-w-[520px] leading-relaxed mt-3">
+        <p className="fg-low text-[14px] max-w-[520px] leading-relaxed mt-3">
           {subtitle}
         </p>
       )}

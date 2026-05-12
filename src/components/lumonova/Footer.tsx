@@ -22,7 +22,7 @@ export function Footer() {
               />
             </Link>
             <p
-              className="text-[12px] max-w-[260px]"
+              className="text-[13px] max-w-[260px]"
               style={{ color: "rgba(242,242,242,0.15)", lineHeight: 1.6 }}
             >
               European Smart Lighting. No Hub. No Lock-in.
@@ -32,7 +32,7 @@ export function Footer() {
           {/* Produkte */}
           <div>
             <h3
-              className="text-[9px] font-bold uppercase mb-4"
+              className="text-[10px] font-bold uppercase mb-4"
               style={{
                 color: "rgba(232,160,96,0.35)",
                 letterSpacing: "var(--tracking-label)",
@@ -45,7 +45,7 @@ export function Footer() {
                 <li key={p}>
                   <a
                     href="#"
-                    className="text-[11px] transition-colors"
+                    className="text-[12px] transition-colors"
                     style={{ color: "rgba(242,242,242,0.22)" }}
                     onMouseEnter={(e) =>
                       (e.currentTarget.style.color = "rgba(242,242,242,0.60)")
@@ -64,7 +64,7 @@ export function Footer() {
           {/* Rechtliches */}
           <div>
             <h3
-              className="text-[9px] font-bold uppercase mb-4"
+              className="text-[10px] font-bold uppercase mb-4"
               style={{
                 color: "rgba(232,160,96,0.35)",
                 letterSpacing: "var(--tracking-label)",
@@ -77,7 +77,7 @@ export function Footer() {
                 <li key={l}>
                   <a
                     href="#"
-                    className="text-[11px] transition-colors"
+                    className="text-[12px] transition-colors"
                     style={{ color: "rgba(242,242,242,0.22)" }}
                     onMouseEnter={(e) =>
                       (e.currentTarget.style.color = "rgba(242,242,242,0.60)")
@@ -96,7 +96,7 @@ export function Footer() {
           {/* Kontakt */}
           <div>
             <h3
-              className="text-[9px] font-bold uppercase mb-4"
+              className="text-[10px] font-bold uppercase mb-4"
               style={{
                 color: "rgba(232,160,96,0.35)",
                 letterSpacing: "var(--tracking-label)",
@@ -105,7 +105,7 @@ export function Footer() {
               Kontakt
             </h3>
             <ul
-              className="flex flex-col gap-3 text-[11px]"
+              className="flex flex-col gap-3 text-[12px]"
               style={{ color: "rgba(242,242,242,0.22)" }}
             >
               <li>
@@ -128,7 +128,7 @@ export function Footer() {
           style={{ borderColor: "rgba(255,255,255,0.04)" }}
         >
           <p
-            className="text-[10px]"
+            className="text-[11px]"
             style={{ color: "rgba(242,242,242,0.10)" }}
           >
             © 2026 C&amp;L Handels GmbH, Willich, Deutschland
@@ -137,7 +137,7 @@ export function Footer() {
             {["CE", "WEEE", "RoHS"].map((c) => (
               <li
                 key={c}
-                className="text-[9px] font-medium uppercase px-2 py-1"
+                className="text-[10px] font-medium uppercase px-2 py-1"
                 style={{
                   color: "rgba(242,242,242,0.18)",
                   border: "1px solid rgba(255,255,255,0.06)",

@@ -97,7 +97,7 @@ const Index = () => {
           <div className="max-w-2xl">
             <span className="block h-[2px] w-12 bg-amber mb-8" />
             <p
-              className="text-[12px] uppercase text-amber mb-6"
+              className="text-[13px] uppercase text-amber mb-6"
               style={{ letterSpacing: "var(--tracking-label)" }}
             >
               Smart Lighting
@@ -107,7 +107,7 @@ const Index = () => {
               <span className="block text-amber">Kein Lock-in.</span>
               <span className="block font-light fg-minimal">Einfach smart.</span>
             </h1>
-            <p className="mt-10 max-w-md text-[15px] leading-relaxed fg-mid">
+            <p className="mt-10 max-w-md text-[16px] leading-relaxed fg-mid">
               LUMOnova ist Beleuchtung, die zu Dir kommt – nicht zu einem Ökosystem.
               Vier Tiers, vier Produktfamilien, ein Anspruch: Licht, das funktioniert.
             </p>
@@ -144,7 +144,7 @@ const Index = () => {
                 }
               >
                 <p
-                  className="text-[11px] uppercase fg-mid"
+                  className="text-[12px] uppercase fg-mid"
                   style={{ letterSpacing: "var(--tracking-label)" }}
                 >
                   {u}
@@ -239,13 +239,13 @@ const Index = () => {
           <div className="mt-8 flex justify-end">
             <Link
               to="/collection"
-              className="inline-flex items-center gap-1 text-[11px] uppercase text-amber"
+              className="inline-flex items-center gap-1 text-[12px] uppercase text-amber"
               style={{ letterSpacing: "var(--tracking-btn)" }}
             >
               Alle Produkte
               <span
                 className="material-symbols-outlined"
-                style={{ fontSize: 16 }}
+                style={{ fontSize: 17 }}
                 aria-hidden="true"
               >
                 arrow_forward

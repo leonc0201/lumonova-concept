@@ -182,7 +182,7 @@ function HeroGallery({ product }: { product: ProductData }) {
             />
           ) : (
             <p
-              className="relative italic text-[14px]"
+              className="relative italic text-[15px]"
               style={{
                 color: "rgba(242,242,242,0.20)",
                 zIndex: 10,
@@ -219,7 +219,7 @@ function HeroGallery({ product }: { product: ProductData }) {
         >
           <span
             className="material-symbols-outlined"
-            style={{ fontSize: 20 }}
+            style={{ fontSize: 21 }}
             aria-hidden="true"
           >
             chevron_left
@@ -251,7 +251,7 @@ function HeroGallery({ product }: { product: ProductData }) {
         >
           <span
             className="material-symbols-outlined"
-            style={{ fontSize: 20 }}
+            style={{ fontSize: 21 }}
             aria-hidden="true"
           >
             chevron_right
@@ -295,7 +295,7 @@ function HeroGallery({ product }: { product: ProductData }) {
                 <span
                   className="uppercase"
                   style={{
-                    fontSize: 9,
+                    fontSize: 10,
                     color: "rgba(242,242,242,0.20)",
                     letterSpacing: "0.06em",
                   }}
@@ -372,7 +372,7 @@ function SubNav() {
                   onClick={() => scrollToSection(tab.id)}
                   className="cursor-pointer transition-all"
                   style={{
-                    fontSize: 12,
+                    fontSize: 13,
                     fontWeight: 500,
                     letterSpacing: "0.04em",
                     color: isActive
@@ -416,7 +416,7 @@ function FeatureImage({ src, alt }: { src?: string; alt?: string }) {
       ) : (
         <div className="absolute inset-0 flex items-center justify-center">
           <p
-            className="text-[11px] italic text-center"
+            className="text-[12px] italic text-center"
             style={{ color: "rgba(242,242,242,0.15)" }}
           >
             FEATURE-BILD / 1600 × 1200
@@ -446,7 +446,7 @@ function FeatureText({
       }}
     >
       <p
-        className="text-[9px] font-bold uppercase mb-4 text-amber"
+        className="text-[10px] font-bold uppercase mb-4 text-amber"
         style={{ letterSpacing: "var(--tracking-label)" }}
       >
         {eyebrow}
@@ -458,7 +458,7 @@ function FeatureText({
         {title}
       </h3>
       <p
-        className="text-[14px]"
+        className="text-[15px]"
         style={{ color: "rgba(242,242,242,0.45)", lineHeight: 1.7 }}
       >
         {text}
@@ -517,14 +517,14 @@ function SpecTable({ specs }: { specs: SpecRow[] }) {
         >
           <div
             role="rowheader"
-            className="text-[14px]"
+            className="text-[15px]"
             style={{ color: "rgba(242,242,242,0.45)", fontWeight: 500 }}
           >
             {spec.label}
           </div>
           <div
             role="cell"
-            className="text-[14px]"
+            className="text-[15px]"
             style={{
               color: spec.accent
                 ? "var(--color-amber)"
@@ -554,7 +554,7 @@ function CompatCardTile({ card }: { card: CompatCard }) {
       }}
     >
       <p
-        className="text-[11px] font-bold mb-4"
+        className="text-[12px] font-bold mb-4"
         style={{ color: "rgba(232,160,96,0.30)" }}
       >
         {card.number}
@@ -577,9 +577,9 @@ function CompatCardTile({ card }: { card: CompatCard }) {
         />
       </div>
 
-      <h3 className="text-[14px] font-bold fg-primary mb-1">{card.name}</h3>
+      <h3 className="text-[15px] font-bold fg-primary mb-1">{card.name}</h3>
       <p
-        className="text-[12px]"
+        className="text-[13px]"
         style={{ color: "rgba(242,242,242,0.40)" }}
       >
         Verfügbar in:{" "}
@@ -623,7 +623,7 @@ const Product = () => {
           >
             <nav aria-label="Brotkrumen">
               <p
-                className="text-[10px] mb-8"
+                className="text-[11px] mb-8"
                 style={{
                   color: "rgba(242,242,242,0.28)",
                   letterSpacing: "0.04em",
@@ -634,7 +634,7 @@ const Product = () => {
             </nav>
 
             <span
-              className="inline-flex items-center self-start rounded-full text-[10px] font-bold uppercase mb-4"
+              className="inline-flex items-center self-start rounded-full text-[11px] font-bold uppercase mb-4"
               style={{
                 background: "rgba(232,160,96,0.10)",
                 border: "1px solid rgba(232,160,96,0.25)",
@@ -653,7 +653,7 @@ const Product = () => {
               {product.name}
             </h1>
             <p
-              className="text-[11px] uppercase mb-4"
+              className="text-[12px] uppercase mb-4"
               style={{
                 color: "rgba(242,242,242,0.30)",
                 letterSpacing: "0.08em",
@@ -663,7 +663,7 @@ const Product = () => {
             </p>
 
             <p
-              className="text-[13px] mb-8"
+              className="text-[14px] mb-8"
               style={{ color: "rgba(242,242,242,0.45)", lineHeight: 1.6 }}
             >
               {product.shortDescription}
@@ -673,7 +673,7 @@ const Product = () => {
               {product.usps.map((u) => (
                 <li
                   key={u}
-                  className="flex items-center gap-3 text-[12px]"
+                  className="flex items-center gap-3 text-[13px]"
                   style={{ color: "rgba(242,242,242,0.55)" }}
                 >
                   <span
@@ -772,7 +772,7 @@ const Product = () => {
             <p
               className="font-bold uppercase mb-4"
               style={{
-                fontSize: 9,
+                fontSize: 10,
                 color: "rgba(232,160,96,0.50)",
                 letterSpacing: "0.22em",
               }}
@@ -872,7 +872,7 @@ const Product = () => {
               }}
             >
               <span
-                className="text-[10px] font-bold uppercase flex-shrink-0"
+                className="text-[11px] font-bold uppercase flex-shrink-0"
                 style={{
                   color: "rgba(242,242,242,0.30)",
                   letterSpacing: "0.12em",
@@ -886,7 +886,7 @@ const Product = () => {
                     key={label}
                     className="rounded-full uppercase font-bold select-none"
                     style={{
-                      fontSize: 10,
+                      fontSize: 11,
                       padding: "4px 14px",
                       background: "rgba(255,255,255,0.05)",
                       border: "1px solid rgba(255,255,255,0.08)",
@@ -938,13 +938,13 @@ const Product = () => {
               ))}
             </div>
             <p
-              className="text-[14px] mb-2"
+              className="text-[15px] mb-2"
               style={{ color: "rgba(242,242,242,0.30)" }}
             >
               Sei der Erste, der dieses Produkt bewertet.
             </p>
             <p
-              className="text-[11px]"
+              className="text-[12px]"
               style={{ color: "rgba(242,242,242,0.18)" }}
             >
               Rezensionen werden nach dem Launch hier erscheinen.

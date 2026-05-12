@@ -91,7 +91,7 @@ function TierCard({ tier }: { tier: TierData }) {
       {/* Oben */}
       <div className="flex-1">
         <p
-          className="fg-low text-[9px] font-bold uppercase mb-2"
+          className="fg-low text-[10px] font-bold uppercase mb-2"
           style={{ letterSpacing: "var(--tracking-label)" }}
         >
           {tier.step}
@@ -99,7 +99,7 @@ function TierCard({ tier }: { tier: TierData }) {
         <h3 className="fg-primary text-[28px] font-bold tracking-tight">
           {tier.name}
         </h3>
-        <p className="text-amber text-[22px] font-bold mt-1">{tier.range}</p>
+        <p className="text-amber text-[23px] font-bold mt-1">{tier.range}</p>
 
         <ul className="flex flex-col gap-6 mt-12">
           {tier.features.map((f) => (
@@ -107,7 +107,7 @@ function TierCard({ tier }: { tier: TierData }) {
               <span
                 className="material-symbols-outlined flex-shrink-0"
                 style={{
-                  fontSize: 18,
+                  fontSize: 19,
                   color: isRecommended
                     ? "var(--color-amber)"
                     : "rgba(232,160,96,0.60)",
@@ -116,7 +116,7 @@ function TierCard({ tier }: { tier: TierData }) {
               >
                 check_circle
               </span>
-              <span className="fg-mid text-[14px] leading-snug">{f}</span>
+              <span className="fg-mid text-[15px] leading-snug">{f}</span>
             </li>
           ))}
         </ul>
@@ -131,7 +131,7 @@ function TierCard({ tier }: { tier: TierData }) {
               background: "rgba(255,255,255,0.06)",
               color: "rgba(242,242,242,0.35)",
               border: "1px solid rgba(255,255,255,0.08)",
-              fontSize: 10,
+              fontSize: 11,
               fontWeight: 700,
               letterSpacing: "var(--tracking-btn)",
               padding: "6px 16px",
@@ -143,7 +143,7 @@ function TierCard({ tier }: { tier: TierData }) {
       ) : (
         <button
           type="button"
-          className="mt-10 w-full rounded-lg py-4 text-[11px] font-bold uppercase transition-all"
+          className="mt-10 w-full rounded-lg py-4 text-[12px] font-bold uppercase transition-all"
           style={
             isRecommended
               ? {

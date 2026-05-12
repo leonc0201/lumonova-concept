@@ -43,7 +43,7 @@ export function TrustRow() {
           >
             <span
               className="material-symbols-outlined text-amber"
-              style={{ fontSize: 18 }}
+              style={{ fontSize: 19 }}
             >
               {item.icon}
             </span>
@@ -51,13 +51,13 @@ export function TrustRow() {
 
           <div className="min-w-0">
             <p
-              className="text-[13px] font-bold"
+              className="text-[14px] font-bold"
               style={{ color: "rgba(242,242,242,0.78)" }}
             >
               {item.label}
             </p>
             <p
-              className="text-[11px] mt-1"
+              className="text-[12px] mt-1"
               style={{ color: "rgba(242,242,242,0.28)", lineHeight: 1.55 }}
             >
               {item.subtext}

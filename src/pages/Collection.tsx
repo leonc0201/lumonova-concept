@@ -60,7 +60,7 @@ function FilterChip({ active, icon, onClick, children }: FilterChipProps) {
         }`,
         color: active ? "var(--color-amber)" : "rgba(242,242,242,0.50)",
         padding: "6px 16px",
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: active ? 600 : 500,
         scrollSnapAlign: "start",
         boxShadow: active ? "0 0 14px rgba(232,160,96,0.18)" : "none",
@@ -70,7 +70,7 @@ function FilterChip({ active, icon, onClick, children }: FilterChipProps) {
         <span
           className="material-symbols-outlined"
           style={{
-            fontSize: 16,
+            fontSize: 17,
             marginRight: 6,
             verticalAlign: "middle",
           }}
@@ -95,7 +95,7 @@ function ChipRow({ label, options, active, onChange }: ChipRowProps) {
   return (
     <div>
       <p
-        className="text-[9px] font-bold uppercase mb-3"
+        className="text-[10px] font-bold uppercase mb-3"
         style={{
           color: "rgba(242,242,242,0.30)",
           letterSpacing: "0.16em",
@@ -193,7 +193,7 @@ const Collection = () => {
             style={{ marginTop: "1.5rem", marginBottom: "2rem" }}
           >
             <p
-              className="text-[12px] font-medium"
+              className="text-[13px] font-medium"
               style={{ color: "rgba(242,242,242,0.30)" }}
               aria-live="polite"
             >
@@ -202,7 +202,7 @@ const Collection = () => {
             </p>
 
             <label
-              className="flex items-center gap-2 text-[12px]"
+              className="flex items-center gap-2 text-[13px]"
               style={{ color: "rgba(242,242,242,0.50)" }}
             >
               <span>Sortierung:</span>
@@ -214,7 +214,7 @@ const Collection = () => {
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.08)",
                   padding: "6px 12px",
-                  fontSize: 12,
+                  fontSize: 13,
                   color: "rgba(242,242,242,0.50)",
                 }}
               >
@@ -255,13 +255,13 @@ const Collection = () => {
                 search_off
               </span>
               <p
-                className="text-[16px] font-bold mb-2"
+                className="text-[17px] font-bold mb-2"
                 style={{ color: "rgba(242,242,242,0.40)" }}
               >
                 Keine Produkte gefunden.
               </p>
               <p
-                className="text-[13px] mb-6"
+                className="text-[14px] mb-6"
                 style={{ color: "rgba(242,242,242,0.25)" }}
               >
                 Versuche einen anderen Filter.

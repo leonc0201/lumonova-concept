@@ -90,13 +90,13 @@ function CategoryCard({ category }: { category: Category }) {
 
       {/* Inhalt */}
       <h3
-        className="text-[18px] font-bold mb-2"
+        className="text-[19px] font-bold mb-2"
         style={{ color: "rgba(242,242,242,0.90)" }}
       >
         {name}
       </h3>
       <p
-        className="text-[13px] mb-6"
+        className="text-[14px] mb-6"
         style={{ color: "rgba(242,242,242,0.40)", lineHeight: 1.6 }}
       >
         {description}
@@ -106,7 +106,7 @@ function CategoryCard({ category }: { category: Category }) {
       <div className="mt-auto">
         {available ? (
           <span
-            className="inline-flex items-center gap-2 text-[11px] font-medium uppercase"
+            className="inline-flex items-center gap-2 text-[12px] font-medium uppercase"
             style={{
               color: "rgba(232,160,96,0.80)",
               letterSpacing: "var(--tracking-label)",
@@ -123,7 +123,7 @@ function CategoryCard({ category }: { category: Category }) {
           <span
             className="inline-flex items-center rounded-full"
             style={{
-              fontSize: 10,
+              fontSize: 11,
               padding: "3px 10px",
               background: "rgba(255,255,255,0.06)",
               color: "rgba(242,242,242,0.30)",

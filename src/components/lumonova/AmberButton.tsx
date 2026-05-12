@@ -16,7 +16,7 @@ export function AmberButton({
       <button
         type="button"
         {...rest}
-        className={`group inline-flex items-center gap-2 rounded-full px-7 py-3 text-[11px] font-semibold uppercase transition-all duration-200 ${className}`}
+        className={`group inline-flex items-center gap-2 rounded-full px-7 py-3 text-[12px] font-semibold uppercase transition-all duration-200 ${className}`}
         style={{
           color: "rgba(242,242,242,0.80)",
           border: "1px solid rgba(255,255,255,0.20)",
@@ -31,7 +31,7 @@ export function AmberButton({
         <span>{children}</span>
         <span
           className="material-symbols-outlined transition-transform group-hover:translate-x-1"
-          style={{ fontSize: 16 }}
+          style={{ fontSize: 17 }}
           aria-hidden="true"
         >
           arrow_forward
@@ -44,7 +44,7 @@ export function AmberButton({
     <button
       type="button"
       {...rest}
-      className={`inline-flex items-center justify-center rounded-full px-10 py-3 text-[11px] font-bold uppercase text-white transition-all duration-200 hover:scale-105 ${className}`}
+      className={`inline-flex items-center justify-center rounded-full px-10 py-3 text-[12px] font-bold uppercase text-white transition-all duration-200 hover:scale-105 ${className}`}
       style={{
         background: "var(--color-amber)",
         letterSpacing: "var(--tracking-btn)",

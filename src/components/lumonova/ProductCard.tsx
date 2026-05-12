@@ -88,7 +88,7 @@ export function ProductCard({
           <span
             className="absolute top-3 left-3 rounded-full font-bold uppercase"
             style={{
-              fontSize: 8,
+              fontSize: 9,
               padding: "4px 10px",
               background: "rgba(14,12,10,0.90)",
               color: pill.color,
@@ -131,13 +131,13 @@ export function ProductCard({
         <div className="p-5 flex flex-col gap-3 flex-1">
           <div>
             <h3
-              className="text-[14px] font-bold"
+              className="text-[15px] font-bold"
               style={{ color: "rgba(242,242,242,0.85)" }}
             >
               {name}
             </h3>
             <p
-              className="text-[10px] mt-1 uppercase"
+              className="text-[11px] mt-1 uppercase"
               style={{
                 color: "rgba(242,242,242,0.25)",
                 letterSpacing: "0.06em",
@@ -161,7 +161,7 @@ export function ProductCard({
             <span
               className="inline-flex items-center gap-1 rounded-full font-bold uppercase text-amber transition-colors"
               style={{
-                fontSize: 10,
+                fontSize: 11,
                 padding: "5px 12px",
                 background: "rgba(232,160,96,0.08)",
                 border: "1px solid rgba(232,160,96,0.18)",
@@ -171,7 +171,7 @@ export function ProductCard({
               Ansehen
               <span
                 className="material-symbols-outlined"
-                style={{ fontSize: 14 }}
+                style={{ fontSize: 15 }}
                 aria-hidden="true"
               >
                 arrow_forward

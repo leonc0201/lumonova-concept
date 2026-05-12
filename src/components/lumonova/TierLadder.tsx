@@ -53,13 +53,13 @@ export function TierLadder() {
       {/* Linke Spalte */}
       <motion.div variants={textColumnVariant}>
         <p
-          className="text-[9px] font-bold uppercase text-amber mb-4"
+          className="text-[10px] font-bold uppercase text-amber mb-4"
           style={{ letterSpacing: "var(--tracking-label)" }}
         >
           So funktionieren die Tiers
         </p>
         <p
-          className="text-[14px] fg-mid"
+          className="text-[15px] fg-mid"
           style={{ lineHeight: 1.7 }}
         >
           Jeder Tier ist eigenständig nutzbar und baut funktional auf dem
@@ -117,13 +117,13 @@ export function TierLadder() {
                 }}
                 viewport={{ once: true, margin: "-80px" }}
               >
-                <span className="text-[16px] font-bold text-amber">
+                <span className="text-[17px] font-bold text-amber">
                   {item.number}
                 </span>
               </motion.span>
 
               <motion.p
-                className="mt-4 text-[13px] font-bold fg-primary uppercase"
+                className="mt-4 text-[14px] font-bold fg-primary uppercase"
                 style={{ letterSpacing: "0.08em" }}
                 initial={{ opacity: 0, y: 8 }}
                 whileInView={{
@@ -140,7 +140,7 @@ export function TierLadder() {
                 {item.name}
               </motion.p>
               <motion.p
-                className="mt-1 text-[11px]"
+                className="mt-1 text-[12px]"
                 style={{ color: "rgba(242,242,242,0.35)" }}
                 initial={{ opacity: 0, y: 8 }}
                 whileInView={{
