@@ -311,7 +311,14 @@ export const PRODUCTS: Product[] = [
     usps: PANEL_USPS,
     specs: panelSpecs("620 × 620 × 32 mm"),
     features: PANEL_FEATURES,
-    imageSrc: "/images-optimized/products/Lumonova_LM-P62-36W-CO_1.webp",
+    introHero: {
+      eyebrow: "LED Panel 62×62",
+      headline: "Licht, das Räume zum Arbeiten bringt.",
+      imageSrc:
+        "/images-optimized/products/Classic%2062%20x%2062/Classic%20Panel%2062%20x%2062%20B%C3%BCro%20%E2%80%94%20Rasterdecke.webp",
+    },
+    imageSrc:
+      "/images-optimized/products/Classic%2062%20x%2062/Classic%20Panel%2062%20x%2062%20UGR19.webp",
     warranty: "2 Jahre Garantie",
     cta: PANEL_REQUEST_CTA,
   },
